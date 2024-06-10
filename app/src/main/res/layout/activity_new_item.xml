@@ -1,0 +1,172 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".activity.NewItemActivity">
+
+    <TextView
+        android:id="@+id/fragment_createalarm_scheduleAlarmHeading"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="Schedule Alarm"
+        android:textAlignment="center"
+        android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+        app:layout_constraintBottom_toTopOf="@+id/linearLayout"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/btnAddItem"
+        android:layout_width="183dp"
+        android:layout_height="48dp"
+        android:layout_gravity="center"
+        android:text="salvar alarme"
+        tools:layout_editor_absoluteX="212dp"
+        tools:layout_editor_absoluteY="667dp" />
+
+    <LinearLayout
+        android:id="@+id/linearLayout"
+        android:layout_width="409dp"
+        android:layout_height="240dp"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toTopOf="@+id/linearLayout2"
+        tools:layout_editor_absoluteX="0dp">
+
+        <EditText
+            android:id="@+id/etTitle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Alarm Title" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <EditText
+                android:id="@+id/time_picker"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:inputType="time" />
+
+            <ImageButton
+                android:id="@+id/imgButtonTime"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:srcCompat="@drawable/baseline_access_alarm_24" />
+        </LinearLayout>
+
+        <CheckBox
+            android:id="@+id/fragment_createalarm_recurring"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:checked="false"
+            android:text="Recurring Alarm" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="55dp"
+            android:orientation="horizontal">
+
+            <ToggleButton
+                android:id="@+id/toggleBtn_seg"
+                android:layout_width="55dp"
+                android:layout_height="44dp"
+                android:text="ToggleButton" />
+
+            <ToggleButton
+                android:id="@+id/toggleBtn_ter"
+                android:layout_width="55dp"
+                android:layout_height="44dp"
+                android:text="ToggleButton" />
+
+            <ToggleButton
+                android:id="@+id/toggleBtn_quar"
+                android:layout_width="55dp"
+                android:layout_height="44dp"
+                android:text="ToggleButton" />
+
+            <ToggleButton
+                android:id="@+id/toggleBtn_quin"
+                android:layout_width="55dp"
+                android:layout_height="44dp"
+                android:text="ToggleButton" />
+
+            <ToggleButton
+                android:id="@+id/toggleBtn_sex"
+                android:layout_width="55dp"
+                android:layout_height="44dp"
+                android:text="ToggleButton" />
+
+            <ToggleButton
+                android:id="@+id/toggleBtn_sab"
+                android:layout_width="55dp"
+                android:layout_height="44dp"
+                android:text="ToggleButton" />
+
+            <ToggleButton
+                android:id="@+id/toggleBtn_dom"
+                android:layout_width="55dp"
+                android:layout_height="44dp"
+                android:text="ToggleButton" />
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/linearLayout2"
+        android:layout_width="409dp"
+        android:layout_height="206dp"
+        android:orientation="vertical"
+        tools:layout_editor_absoluteX="2dp"
+        tools:layout_editor_absoluteY="369dp">
+
+        <EditText
+            android:id="@+id/etNome"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:hint="nome"
+            android:inputType="text" />
+
+        <EditText
+            android:id="@+id/etDesc"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:hint="descrição"
+            android:inputType="text" />
+
+        <EditText
+            android:id="@+id/etQtd"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:hint="quantidade "
+            android:inputType="text" />
+
+        <EditText
+            android:id="@+id/etVencim"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:hint="data de vencimento"
+            android:inputType="date" />
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/btnCancel"
+        android:layout_width="173dp"
+        android:layout_height="46dp"
+        android:text="cancelar"
+        app:layout_constraintEnd_toStartOf="@+id/btnAddItem"
+        app:layout_constraintStart_toStartOf="parent"
+        tools:layout_editor_absoluteY="669dp" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

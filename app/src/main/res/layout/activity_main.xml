@@ -11,218 +11,25 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <TextView
-            android:id="@+id/fragment_createalarm_scheduleAlarmHeading"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
-            android:layout_marginTop="16dp"
-            android:layout_marginEnd="8dp"
-            android:text="Schedule Alarm"
-            android:textAlignment="center"
-            android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rvItens"
+            android:layout_width="409dp"
+            android:layout_height="729dp"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
-        <LinearLayout
-            android:id="@+id/fragment_createalarm_recurring_options"
-            android:layout_width="match_parent"
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/fabAddNewAlarm"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:visibility="gone"
-            app:layout_constraintTop_toBottomOf="@+id/fragment_createalarm_recurring">
-
-            <CheckBox
-                android:id="@+id/fragment_createalarm_checkMon"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Mon" />
-
-            <CheckBox
-                android:id="@+id/fragment_createalarm_checkTue"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Tue" />
-
-            <CheckBox
-                android:id="@+id/fragment_createalarm_checkWed"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Wed" />
-
-            <CheckBox
-                android:id="@+id/fragment_createalarm_checkThu"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Thu" />
-
-            <CheckBox
-                android:id="@+id/fragment_createalarm_checkFri"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Fri" />
-
-            <CheckBox
-                android:id="@+id/fragment_createalarm_checkSat"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Sat" />
-
-            <CheckBox
-                android:id="@+id/fragment_createalarm_checkSun"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Sun" />
-
-        </LinearLayout>
-
-        <Button
-            android:id="@+id/fragment_createalarm_scheduleAlarm"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:text="Schedule Alarm"
+            android:layout_marginEnd="16dp"
+            android:layout_marginBottom="16dp"
+            android:clickable="true"
             app:layout_constraintBottom_toBottomOf="parent"
-            tools:layout_editor_absoluteX="133dp" />
-
-        <LinearLayout
-            android:layout_width="409dp"
-            android:layout_height="240dp"
-            android:orientation="vertical"
-            tools:layout_editor_absoluteX="0dp"
-            tools:layout_editor_absoluteY="112dp">
-
-            <EditText
-                android:id="@+id/alarm_title"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:hint="Alarm Title" />
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal">
-
-                <EditText
-                    android:id="@+id/time_picker"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:ems="10"
-                    android:inputType="time" />
-
-                <ImageButton
-                    android:id="@+id/imgButtonTime"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    app:srcCompat="@drawable/baseline_access_alarm_24" />
-            </LinearLayout>
-
-            <CheckBox
-                android:id="@+id/fragment_createalarm_recurring"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:checked="false"
-                android:text="Recurring Alarm" />
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="55dp"
-                android:orientation="horizontal">
-
-                <ToggleButton
-                    android:id="@+id/toggleButton_seg"
-                    android:layout_width="55dp"
-                    android:layout_height="44dp"
-                    android:text="ToggleButton" />
-
-                <ToggleButton
-                    android:id="@+id/toggleButton_ter"
-                    android:layout_width="55dp"
-                    android:layout_height="44dp"
-                    android:text="ToggleButton" />
-
-                <ToggleButton
-                    android:id="@+id/toggleButton_quar"
-                    android:layout_width="55dp"
-                    android:layout_height="44dp"
-                    android:text="ToggleButton" />
-
-                <ToggleButton
-                    android:id="@+id/toggleButton_quin"
-                    android:layout_width="55dp"
-                    android:layout_height="44dp"
-                    android:text="ToggleButton" />
-
-                <ToggleButton
-                    android:id="@+id/toggleButton_sex"
-                    android:layout_width="55dp"
-                    android:layout_height="44dp"
-                    android:text="ToggleButton" />
-
-                <ToggleButton
-                    android:id="@+id/toggleButton_sab"
-                    android:layout_width="55dp"
-                    android:layout_height="44dp"
-                    android:text="ToggleButton" />
-
-                <ToggleButton
-                    android:id="@+id/toggleButton_dom"
-                    android:layout_width="55dp"
-                    android:layout_height="44dp"
-                    android:text="ToggleButton" />
-            </LinearLayout>
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="409dp"
-            android:layout_height="206dp"
-            android:orientation="vertical"
-            tools:layout_editor_absoluteX="2dp"
-            tools:layout_editor_absoluteY="369dp">
-
-            <TextView
-                android:id="@+id/nome_rem"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="nome" />
-
-            <TextView
-                android:id="@+id/desc_rem"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="descrição" />
-
-            <TextView
-                android:id="@+id/qtd_rem"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="quantidade" />
-
-            <TextView
-                android:id="@+id/vencim_rem"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="vencimento" />
-
-            <EditText
-                android:id="@+id/editTextText"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:ems="10"
-                android:hint="name"
-                android:inputType="text" />
-
-            <EditText
-                android:id="@+id/editTextText2"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:ems="10"
-                android:hint="descrição"
-                android:inputType="text" />
-        </LinearLayout>
-
+            app:layout_constraintEnd_toEndOf="parent"
+            app:srcCompat="@android:drawable/ic_menu_add" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 </LinearLayout>
