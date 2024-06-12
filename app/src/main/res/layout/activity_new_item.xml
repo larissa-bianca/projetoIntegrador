@@ -12,13 +12,12 @@
         android:id="@+id/fragment_createalarm_scheduleAlarmHeading"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
         android:text="Schedule Alarm"
         android:textAlignment="center"
         android:textAppearance="@style/TextAppearance.AppCompat.Medium"
         app:layout_constraintBottom_toTopOf="@+id/linearLayout"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@+id/toolbar" />
 
     <Button
         android:id="@+id/btnAddItem"
@@ -41,7 +40,8 @@
             android:id="@+id/etTitle"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Alarm Title" />
+            android:hint="Alarm Title"
+            android:inputType="text" />
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -72,49 +72,70 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="55dp"
+            android:gravity="fill_horizontal"
             android:orientation="horizontal">
 
             <ToggleButton
                 android:id="@+id/toggleBtn_seg"
                 android:layout_width="55dp"
-                android:layout_height="44dp"
-                android:text="ToggleButton" />
+                android:layout_height="55dp"
+                android:background="@drawable/tgbutton_bg"
+                android:text="ToggleButton"
+                android:textOff="Seg"
+                android:textOn="Seg" />
 
             <ToggleButton
                 android:id="@+id/toggleBtn_ter"
                 android:layout_width="55dp"
-                android:layout_height="44dp"
-                android:text="ToggleButton" />
+                android:layout_height="55dp"
+                android:background="@drawable/tgbutton_bg"
+                android:text="ToggleButton"
+                android:textOff="Ter" />
 
             <ToggleButton
                 android:id="@+id/toggleBtn_quar"
                 android:layout_width="55dp"
-                android:layout_height="44dp"
-                android:text="ToggleButton" />
+                android:layout_height="55dp"
+                android:background="@drawable/tgbutton_bg"
+                android:text="ToggleButton"
+                android:textOff="qua"
+                android:textOn="qua" />
 
             <ToggleButton
                 android:id="@+id/toggleBtn_quin"
                 android:layout_width="55dp"
-                android:layout_height="44dp"
-                android:text="ToggleButton" />
+                android:layout_height="55dp"
+                android:background="@drawable/tgbutton_bg"
+                android:text="ToggleButton"
+                android:textOff="qui"
+                android:textOn="qui" />
 
             <ToggleButton
                 android:id="@+id/toggleBtn_sex"
                 android:layout_width="55dp"
-                android:layout_height="44dp"
-                android:text="ToggleButton" />
+                android:layout_height="55dp"
+                android:background="@drawable/tgbutton_bg"
+                android:text="ToggleButton"
+                android:textOff="sex"
+                android:textOn="sex" />
 
             <ToggleButton
                 android:id="@+id/toggleBtn_sab"
                 android:layout_width="55dp"
-                android:layout_height="44dp"
-                android:text="ToggleButton" />
+                android:layout_height="55dp"
+                android:background="@drawable/tgbutton_bg"
+                android:text="ToggleButton"
+                android:textOff="sab"
+                android:textOn="sab" />
 
             <ToggleButton
                 android:id="@+id/toggleBtn_dom"
                 android:layout_width="55dp"
-                android:layout_height="44dp"
-                android:text="ToggleButton" />
+                android:layout_height="55dp"
+                android:background="@drawable/tgbutton_bg"
+                android:text="ToggleButton"
+                android:textOff="dom"
+                android:textOn="dom" />
         </LinearLayout>
 
     </LinearLayout>
@@ -141,7 +162,7 @@
             android:layout_height="wrap_content"
             android:ems="10"
             android:hint="descrição"
-            android:inputType="text" />
+            android:inputType="text|textMultiLine" />
 
         <EditText
             android:id="@+id/etQtd"
@@ -149,7 +170,7 @@
             android:layout_height="wrap_content"
             android:ems="10"
             android:hint="quantidade "
-            android:inputType="text" />
+            android:inputType="number" />
 
         <EditText
             android:id="@+id/etVencim"
@@ -158,6 +179,14 @@
             android:ems="10"
             android:hint="data de vencimento"
             android:inputType="date" />
+
+        <EditText
+            android:id="@+id/editTextText"
+            android:layout_width="match_parent"
+            android:layout_height="83dp"
+            android:ems="10"
+            android:inputType="text"
+            android:text="Name" />
     </LinearLayout>
 
     <Button
@@ -168,5 +197,16 @@
         app:layout_constraintEnd_toStartOf="@+id/btnAddItem"
         app:layout_constraintStart_toStartOf="parent"
         tools:layout_editor_absoluteY="669dp" />
+
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="409dp"
+        android:layout_height="wrap_content"
+        android:background="?attr/colorPrimary"
+        android:minHeight="?attr/actionBarSize"
+        android:theme="?attr/actionBarTheme"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
