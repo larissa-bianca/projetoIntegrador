@@ -9,13 +9,13 @@
     tools:context=".activity.NewItemActivity">
 
     <TextView
-        android:id="@+id/fragment_createalarm_scheduleAlarmHeading"
+        android:id="@+id/tvCompart"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
         android:layout_marginEnd="8dp"
-        android:text="Schedule Alarm"
+        android:text="Compartimento 1"
         android:textAlignment="center"
         android:textAppearance="@style/TextAppearance.AppCompat.Medium"
         app:layout_constraintEnd_toEndOf="parent"
@@ -48,17 +48,6 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/etNome" />
 
-    <EditText
-        android:id="@+id/etVencim"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:ems="10"
-        android:hint="data de vencimento"
-        android:inputType="date"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/etQtd" />
-
     <LinearLayout
         android:id="@+id/linearLayout"
         android:layout_width="match_parent"
@@ -88,7 +77,8 @@
             android:layout_height="55dp"
             android:background="@drawable/tgbutton_bg"
             android:text="ToggleButton"
-            android:textOff="Ter" />
+            android:textOff="S"
+            android:textOn="T" />
 
         <ToggleButton
             android:id="@+id/toggleBtn_quar"
@@ -96,16 +86,16 @@
             android:layout_height="55dp"
             android:background="@drawable/tgbutton_bg"
             android:text="ToggleButton"
-            android:textOff="qua"
-            android:textOn="qua" />
+            android:textOff="T"
+            android:textOn="T" />
 
         <ToggleButton
             android:id="@+id/toggleBtn_quin"
-            android:layout_width="55dp"
+            android:layout_width="59dp"
             android:layout_height="55dp"
             android:background="@drawable/tgbutton_bg"
             android:text="ToggleButton"
-            android:textOff="qui"
+            android:textOff="Q"
             android:textOn="qui" />
 
         <ToggleButton
@@ -114,7 +104,7 @@
             android:layout_height="55dp"
             android:background="@drawable/tgbutton_bg"
             android:text="ToggleButton"
-            android:textOff="sex"
+            android:textOff="Q"
             android:textOn="sex" />
 
         <ToggleButton
@@ -123,8 +113,8 @@
             android:layout_height="55dp"
             android:background="@drawable/tgbutton_bg"
             android:text="ToggleButton"
-            android:textOff="sab"
-            android:textOn="sab" />
+            android:textOff="S"
+            android:textOn="S" />
 
         <ToggleButton
             android:id="@+id/toggleBtn_dom"
@@ -132,7 +122,7 @@
             android:layout_height="55dp"
             android:background="@drawable/tgbutton_bg"
             android:text="ToggleButton"
-            android:textOff="dom"
+            android:textOff="S"
             android:textOn="dom" />
     </LinearLayout>
 
@@ -143,7 +133,7 @@
         android:layout_marginTop="8dp"
         android:layout_marginEnd="8dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/fragment_createalarm_scheduleAlarmHeading"
+        app:layout_constraintTop_toBottomOf="@+id/tvCompart"
         app:srcCompat="@drawable/baseline_access_alarm_24" />
 
     <TextView
@@ -157,7 +147,7 @@
         app:layout_constraintBottom_toTopOf="@+id/fragment_createalarm_recurring"
         app:layout_constraintEnd_toStartOf="@+id/imgButtonTime"
         app:layout_constraintStart_toEndOf="@+id/textView2"
-        app:layout_constraintTop_toBottomOf="@+id/fragment_createalarm_scheduleAlarmHeading" />
+        app:layout_constraintTop_toBottomOf="@+id/tvCompart" />
 
     <TextView
         android:id="@+id/textView2"
@@ -168,7 +158,7 @@
         android:text="Hora do Alarme: "
         app:layout_constraintBottom_toTopOf="@+id/fragment_createalarm_recurring"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/fragment_createalarm_scheduleAlarmHeading" />
+        app:layout_constraintTop_toBottomOf="@+id/tvCompart" />
 
     <CheckBox
         android:id="@+id/fragment_createalarm_recurring"
@@ -202,7 +192,6 @@
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
         android:layout_marginEnd="8dp"
         android:layout_marginBottom="8dp"
         android:ems="10"
@@ -211,6 +200,37 @@
         app:layout_constraintBottom_toTopOf="@+id/btnAddItem"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/etVencim" />
+        app:layout_constraintTop_toBottomOf="@+id/imageButton" />
+
+    <TextView
+        android:id="@+id/textView3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:text="Data de Vencimento:"
+        app:layout_constraintBottom_toTopOf="@+id/etDesc"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/etQtd" />
+
+    <TextView
+        android:id="@+id/textView4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:text="TextView"
+        app:layout_constraintBottom_toTopOf="@+id/etDesc"
+        app:layout_constraintTop_toBottomOf="@+id/etQtd"
+        tools:layout_editor_absoluteX="206dp" />
+
+    <ImageButton
+        android:id="@+id/imageButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/etQtd"
+        app:srcCompat="@drawable/baseline_calendar_month_24" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
