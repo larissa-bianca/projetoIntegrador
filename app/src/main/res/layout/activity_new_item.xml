@@ -12,201 +12,205 @@
         android:id="@+id/fragment_createalarm_scheduleAlarmHeading"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
         android:text="Schedule Alarm"
         android:textAlignment="center"
         android:textAppearance="@style/TextAppearance.AppCompat.Medium"
-        app:layout_constraintBottom_toTopOf="@+id/linearLayout"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/toolbar" />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <Button
         android:id="@+id/btnAddItem"
         android:layout_width="183dp"
         android:layout_height="48dp"
         android:layout_gravity="center"
+        android:layout_marginBottom="8dp"
         android:text="salvar alarme"
-        tools:layout_editor_absoluteX="212dp"
-        tools:layout_editor_absoluteY="667dp" />
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <EditText
+        android:id="@+id/etQtd"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        android:ems="10"
+        android:hint="quantidade "
+        android:inputType="number"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/etNome" />
+
+    <EditText
+        android:id="@+id/etVencim"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:hint="data de vencimento"
+        android:inputType="date"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        tools:layout_editor_absoluteY="363dp" />
 
     <LinearLayout
         android:id="@+id/linearLayout"
-        android:layout_width="409dp"
-        android:layout_height="240dp"
-        android:orientation="vertical"
-        app:layout_constraintBottom_toTopOf="@+id/linearLayout2"
-        tools:layout_editor_absoluteX="0dp">
-
-        <EditText
-            android:id="@+id/etTitle"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="Alarm Title"
-            android:inputType="text" />
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal">
-
-            <EditText
-                android:id="@+id/time_picker"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:ems="10"
-                android:inputType="time" />
-
-            <ImageButton
-                android:id="@+id/imgButtonTime"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                app:srcCompat="@drawable/baseline_access_alarm_24" />
-        </LinearLayout>
-
-        <CheckBox
-            android:id="@+id/fragment_createalarm_recurring"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:checked="false"
-            android:text="Recurring Alarm" />
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="55dp"
-            android:gravity="fill_horizontal"
-            android:orientation="horizontal">
-
-            <ToggleButton
-                android:id="@+id/toggleBtn_seg"
-                android:layout_width="55dp"
-                android:layout_height="55dp"
-                android:background="@drawable/tgbutton_bg"
-                android:text="ToggleButton"
-                android:textOff="Seg"
-                android:textOn="Seg" />
-
-            <ToggleButton
-                android:id="@+id/toggleBtn_ter"
-                android:layout_width="55dp"
-                android:layout_height="55dp"
-                android:background="@drawable/tgbutton_bg"
-                android:text="ToggleButton"
-                android:textOff="Ter" />
-
-            <ToggleButton
-                android:id="@+id/toggleBtn_quar"
-                android:layout_width="55dp"
-                android:layout_height="55dp"
-                android:background="@drawable/tgbutton_bg"
-                android:text="ToggleButton"
-                android:textOff="qua"
-                android:textOn="qua" />
-
-            <ToggleButton
-                android:id="@+id/toggleBtn_quin"
-                android:layout_width="55dp"
-                android:layout_height="55dp"
-                android:background="@drawable/tgbutton_bg"
-                android:text="ToggleButton"
-                android:textOff="qui"
-                android:textOn="qui" />
-
-            <ToggleButton
-                android:id="@+id/toggleBtn_sex"
-                android:layout_width="55dp"
-                android:layout_height="55dp"
-                android:background="@drawable/tgbutton_bg"
-                android:text="ToggleButton"
-                android:textOff="sex"
-                android:textOn="sex" />
-
-            <ToggleButton
-                android:id="@+id/toggleBtn_sab"
-                android:layout_width="55dp"
-                android:layout_height="55dp"
-                android:background="@drawable/tgbutton_bg"
-                android:text="ToggleButton"
-                android:textOff="sab"
-                android:textOn="sab" />
-
-            <ToggleButton
-                android:id="@+id/toggleBtn_dom"
-                android:layout_width="55dp"
-                android:layout_height="55dp"
-                android:background="@drawable/tgbutton_bg"
-                android:text="ToggleButton"
-                android:textOff="dom"
-                android:textOn="dom" />
-        </LinearLayout>
-
-    </LinearLayout>
-
-    <LinearLayout
-        android:id="@+id/linearLayout2"
-        android:layout_width="409dp"
-        android:layout_height="206dp"
-        android:orientation="vertical"
-        tools:layout_editor_absoluteX="2dp"
-        tools:layout_editor_absoluteY="369dp">
-
-        <EditText
-            android:id="@+id/etNome"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:ems="10"
-            android:hint="nome"
-            android:inputType="text" />
-
-        <EditText
-            android:id="@+id/etDesc"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:ems="10"
-            android:hint="descrição"
-            android:inputType="text|textMultiLine" />
-
-        <EditText
-            android:id="@+id/etQtd"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:ems="10"
-            android:hint="quantidade "
-            android:inputType="number" />
-
-        <EditText
-            android:id="@+id/etVencim"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:ems="10"
-            android:hint="data de vencimento"
-            android:inputType="date" />
-
-        <EditText
-            android:id="@+id/editTextText"
-            android:layout_width="match_parent"
-            android:layout_height="83dp"
-            android:ems="10"
-            android:inputType="text"
-            android:text="Name" />
-    </LinearLayout>
-
-    <Button
-        android:id="@+id/btnCancel"
-        android:layout_width="173dp"
-        android:layout_height="46dp"
-        android:text="cancelar"
-        app:layout_constraintEnd_toStartOf="@+id/btnAddItem"
-        app:layout_constraintStart_toStartOf="parent"
-        tools:layout_editor_absoluteY="669dp" />
-
-    <androidx.appcompat.widget.Toolbar
-        android:id="@+id/toolbar"
-        android:layout_width="409dp"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="?attr/colorPrimary"
-        android:minHeight="?attr/actionBarSize"
-        android:theme="?attr/actionBarTheme"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        android:gravity="fill_horizontal"
+        android:orientation="horizontal"
+        android:padding="5dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@+id/fragment_createalarm_recurring">
+
+        <ToggleButton
+            android:id="@+id/toggleBtn_seg"
+            android:layout_width="55dp"
+            android:layout_height="55dp"
+            android:background="@drawable/tgbutton_bg"
+            android:text="ToggleButton"
+            android:textOff="D"
+            android:textOn="D" />
+
+        <ToggleButton
+            android:id="@+id/toggleBtn_ter"
+            android:layout_width="55dp"
+            android:layout_height="55dp"
+            android:background="@drawable/tgbutton_bg"
+            android:text="ToggleButton"
+            android:textOff="Ter" />
+
+        <ToggleButton
+            android:id="@+id/toggleBtn_quar"
+            android:layout_width="55dp"
+            android:layout_height="55dp"
+            android:background="@drawable/tgbutton_bg"
+            android:text="ToggleButton"
+            android:textOff="qua"
+            android:textOn="qua" />
+
+        <ToggleButton
+            android:id="@+id/toggleBtn_quin"
+            android:layout_width="55dp"
+            android:layout_height="55dp"
+            android:background="@drawable/tgbutton_bg"
+            android:text="ToggleButton"
+            android:textOff="qui"
+            android:textOn="qui" />
+
+        <ToggleButton
+            android:id="@+id/toggleBtn_sex"
+            android:layout_width="55dp"
+            android:layout_height="55dp"
+            android:background="@drawable/tgbutton_bg"
+            android:text="ToggleButton"
+            android:textOff="sex"
+            android:textOn="sex" />
+
+        <ToggleButton
+            android:id="@+id/toggleBtn_sab"
+            android:layout_width="55dp"
+            android:layout_height="55dp"
+            android:background="@drawable/tgbutton_bg"
+            android:text="ToggleButton"
+            android:textOff="sab"
+            android:textOn="sab" />
+
+        <ToggleButton
+            android:id="@+id/toggleBtn_dom"
+            android:layout_width="55dp"
+            android:layout_height="55dp"
+            android:background="@drawable/tgbutton_bg"
+            android:text="ToggleButton"
+            android:textOff="dom"
+            android:textOn="dom" />
+    </LinearLayout>
+
+    <ImageButton
+        android:id="@+id/imgButtonTime"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/fragment_createalarm_scheduleAlarmHeading"
+        app:srcCompat="@drawable/baseline_access_alarm_24" />
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        android:text="TextView"
+        app:layout_constraintBottom_toTopOf="@+id/fragment_createalarm_recurring"
+        app:layout_constraintEnd_toStartOf="@+id/imgButtonTime"
+        app:layout_constraintStart_toEndOf="@+id/textView2"
+        app:layout_constraintTop_toBottomOf="@+id/fragment_createalarm_scheduleAlarmHeading" />
+
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:text="Hora do Alarme: "
+        app:layout_constraintBottom_toTopOf="@+id/fragment_createalarm_recurring"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/fragment_createalarm_scheduleAlarmHeading" />
+
+    <CheckBox
+        android:id="@+id/fragment_createalarm_recurring"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        android:checked="false"
+        android:text="Recurring Alarm"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imgButtonTime" />
+
+    <EditText
+        android:id="@+id/etNome"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        android:ems="10"
+        android:hint="nome"
+        android:inputType="text"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout" />
+
+    <EditText
+        android:id="@+id/etDesc"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginBottom="8dp"
+        android:ems="10"
+        android:hint="descrição"
+        android:inputType="text|textMultiLine"
+        app:layout_constraintBottom_toTopOf="@+id/btnAddItem"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/etVencim" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
