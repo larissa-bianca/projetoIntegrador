@@ -34,22 +34,10 @@ public class NewItemActivity extends AppCompatActivity {
         btnAddItem.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                EditText etTitle = findViewById(R.id.etTitle);
-                String title = etTitle.getText().toString();
-                if (title.isEmpty()){
-                    Toast.makeText(NewItemActivity.this,"É necessário inserir um título", Toast.LENGTH_LONG).show();
-                    return;
-                }
                 EditText etName = findViewById(R.id.etNome);
                 String name = etName.getText().toString();
                 if (name.isEmpty()){
                     Toast.makeText(NewItemActivity.this,"É necessário inserir o nome do remédio", Toast.LENGTH_LONG).show();
-                    return;
-                }
-                EditText etDesc = findViewById(R.id.etDesc);
-                String desc = etDesc.getText().toString();
-                if (desc.isEmpty()){
-                    Toast.makeText(NewItemActivity.this,"É necessário inserir uma descrição", Toast.LENGTH_LONG).show();
                     return;
                 }
                 EditText etQtd = findViewById(R.id.etQtd);
@@ -58,10 +46,10 @@ public class NewItemActivity extends AppCompatActivity {
                     Toast.makeText(NewItemActivity.this,"É necessário inserir a quantidade de remédios", Toast.LENGTH_LONG).show();
                     return;
                 }
-                EditText etVencim = findViewById(R.id.etVencim);
-                String vencim = etVencim.getText().toString();
-                if (vencim.isEmpty()){
-                    Toast.makeText(NewItemActivity.this,"É necessário inserir o vencimento do remédio", Toast.LENGTH_LONG).show();
+                EditText etDesc = findViewById(R.id.etDesc);
+                String desc = etDesc.getText().toString();
+                if (desc.isEmpty()){
+                    Toast.makeText(NewItemActivity.this,"É necessário inserir uma descrição", Toast.LENGTH_LONG).show();
                     return;
                 }
             }
