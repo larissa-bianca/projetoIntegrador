@@ -137,7 +137,7 @@
         app:srcCompat="@drawable/baseline_access_alarm_24" />
 
     <TextView
-        android:id="@+id/textView"
+        android:id="@+id/tvHora"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
@@ -146,11 +146,11 @@
         android:text="TextView"
         app:layout_constraintBottom_toTopOf="@+id/fragment_createalarm_recurring"
         app:layout_constraintEnd_toStartOf="@+id/imgButtonTime"
-        app:layout_constraintStart_toEndOf="@+id/textView2"
+        app:layout_constraintStart_toEndOf="@+id/tvHrAlarme"
         app:layout_constraintTop_toBottomOf="@+id/tvCompart" />
 
     <TextView
-        android:id="@+id/textView2"
+        android:id="@+id/tvHrAlarme"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
@@ -201,10 +201,10 @@
         app:layout_constraintBottom_toTopOf="@+id/btnAddItem"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageButton" />
+        app:layout_constraintTop_toBottomOf="@+id/imgBtnData" />
 
     <TextView
-        android:id="@+id/textView3"
+        android:id="@+id/tvDataVencim"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
@@ -215,7 +215,7 @@
         app:layout_constraintTop_toBottomOf="@+id/etQtd" />
 
     <TextView
-        android:id="@+id/textView4"
+        android:id="@+id/tvDate"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
@@ -225,7 +225,7 @@
         tools:layout_editor_absoluteX="206dp" />
 
     <ImageButton
-        android:id="@+id/imageButton"
+        android:id="@+id/imgBtnData"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
