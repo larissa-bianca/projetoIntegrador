@@ -46,7 +46,7 @@
                 <TextView
                     android:id="@+id/tvHoraAlarme"
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_height="match_parent"
                     android:hint="Hora do Alarme"
                     android:textSize="16sp" />
             </LinearLayout>
@@ -64,7 +64,7 @@
                     android:textSize="16sp" />
 
                 <TextView
-                    android:id="@+id/textView12"
+                    android:id="@+id/tvName"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:hint="Nome do remédio"
@@ -84,7 +84,7 @@
                     android:textSize="16sp" />
 
                 <TextView
-                    android:id="@+id/textView14"
+                    android:id="@+id/tvQtd"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:hint="qtd"
@@ -105,9 +105,9 @@
                     android:textSize="16sp" />
 
                 <TextView
-                    android:id="@+id/textView16"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
+                    android:id="@+id/tvData"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
                     android:hint="data"
                     android:textSize="16sp" />
             </LinearLayout>
@@ -125,7 +125,7 @@
                     android:textSize="16sp" />
 
                 <TextView
-                    android:id="@+id/textView18"
+                    android:id="@+id/tvDesc"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:hint="desc"

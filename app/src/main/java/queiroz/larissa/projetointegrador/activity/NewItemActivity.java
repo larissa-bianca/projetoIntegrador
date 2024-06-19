@@ -1,5 +1,6 @@
 package queiroz.larissa.projetointegrador.activity;
 
+import android.app.Activity;
 import android.app.DatePickerDialog;
 import android.app.Dialog;
 import android.app.DialogFragment;
@@ -123,11 +124,11 @@ public class NewItemActivity extends AppCompatActivity {
                     Toast.makeText(NewItemActivity.this,"É necessário inserir uma descrição", Toast.LENGTH_LONG).show();
                     return;
                 }
-                if (tvDate == null){
+                if (tvDate == null){ //???????
                     Toast.makeText(NewItemActivity.this,"É necessário selecionar uma Data",Toast.LENGTH_LONG).show();
                     return;
                 }
-                if (tvHora == null){
+                if (tvHora == null){ //????????
                     Toast.makeText(NewItemActivity.this,"É necessário selecionar uma Hora",Toast.LENGTH_LONG).show();
                     return;
                 }
@@ -136,7 +137,11 @@ public class NewItemActivity extends AppCompatActivity {
                 i.putExtra("nome", name);
                 i.putExtra("qtd",qtd);
                 i.putExtra("desc",desc);
+                //i.put???? como adicionar a data e a hora aqui
+                setResult(Activity.RESULT_OK, i);
+                finish();
             }
         });
     }
+
 }
