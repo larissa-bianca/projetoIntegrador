@@ -60,7 +60,7 @@
         android:padding="5dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/fragment_createalarm_recurring">
+        app:layout_constraintTop_toBottomOf="@+id/checkbRecorrente">
 
         <ToggleButton
             android:id="@+id/toggleBtn_seg"
@@ -144,7 +144,7 @@
         android:layout_marginTop="8dp"
         android:layout_marginEnd="8dp"
         android:text="TextView"
-        app:layout_constraintBottom_toTopOf="@+id/fragment_createalarm_recurring"
+        app:layout_constraintBottom_toTopOf="@+id/checkbRecorrente"
         app:layout_constraintEnd_toStartOf="@+id/imgButtonTime"
         app:layout_constraintStart_toEndOf="@+id/tvHrAlarme"
         app:layout_constraintTop_toBottomOf="@+id/tvCompart" />
@@ -156,19 +156,19 @@
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
         android:text="Hora do Alarme: "
-        app:layout_constraintBottom_toTopOf="@+id/fragment_createalarm_recurring"
+        app:layout_constraintBottom_toTopOf="@+id/checkbRecorrente"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tvCompart" />
 
     <CheckBox
-        android:id="@+id/fragment_createalarm_recurring"
+        android:id="@+id/checkbRecorrente"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
         android:layout_marginEnd="8dp"
         android:checked="false"
-        android:text="Recurring Alarm"
+        android:text="Alarme Recorrente"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/imgButtonTime" />

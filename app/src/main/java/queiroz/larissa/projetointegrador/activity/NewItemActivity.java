@@ -4,6 +4,7 @@ import android.app.DatePickerDialog;
 import android.app.Dialog;
 import android.app.DialogFragment;
 import android.app.TimePickerDialog;
+import android.content.Intent;
 import android.icu.util.Calendar;
 import android.os.Bundle;
 import android.text.format.DateFormat;
@@ -31,13 +32,15 @@ public class NewItemActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        EdgeToEdge.enable(this);
+        /*EdgeToEdge.enable(this);*/
         setContentView(R.layout.activity_new_item);
+        /*
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
             Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
         });
+         */
 
         TextView tvHora = findViewById(R.id.tvHora);
 
@@ -120,6 +123,19 @@ public class NewItemActivity extends AppCompatActivity {
                     Toast.makeText(NewItemActivity.this,"É necessário inserir uma descrição", Toast.LENGTH_LONG).show();
                     return;
                 }
+                if (tvDate == null){
+                    Toast.makeText(NewItemActivity.this,"É necessário selecionar uma Data",Toast.LENGTH_LONG).show();
+                    return;
+                }
+                if (tvHora == null){
+                    Toast.makeText(NewItemActivity.this,"É necessário selecionar uma Hora",Toast.LENGTH_LONG).show();
+                    return;
+                }
+
+                Intent i = new Intent();
+                i.putExtra("nome", name);
+                i.putExtra("qtd",qtd);
+                i.putExtra("desc",desc);
             }
         });
     }
