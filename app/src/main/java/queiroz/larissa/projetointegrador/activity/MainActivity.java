@@ -21,8 +21,6 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
-import com.google.android.material.floatingactionbutton.FloatingActionButton;
-
 import queiroz.larissa.projetointegrador.R;
 import queiroz.larissa.projetointegrador.model.MainActivityViewModel;
 import queiroz.larissa.projetointegrador.util.Config;
