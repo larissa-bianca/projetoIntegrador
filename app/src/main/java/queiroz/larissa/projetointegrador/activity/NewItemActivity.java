@@ -123,12 +123,12 @@ public class NewItemActivity extends AppCompatActivity {
                     Toast.makeText(NewItemActivity.this,"É necessário inserir uma descrição", Toast.LENGTH_LONG).show();
                     return;
                 }
-                String date = tvDate.toString();
+                String date = tvDate.getText().toString();
                 if (date.isEmpty()){ //???????
                     Toast.makeText(NewItemActivity.this,"É necessário selecionar uma Data",Toast.LENGTH_LONG).show();
                     return;
                 }
-                String hora = tvHora.toString();
+                String hora = tvHora.getText().toString();
                 if (hora.isEmpty()){ //????????
                     Toast.makeText(NewItemActivity.this,"É necessário selecionar uma Hora",Toast.LENGTH_LONG).show();
                     return;

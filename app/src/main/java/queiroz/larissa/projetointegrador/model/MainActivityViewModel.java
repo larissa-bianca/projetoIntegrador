@@ -62,7 +62,7 @@ public class MainActivityViewModel extends AndroidViewModel {
      * Método que cria e executa uma requisição ao servidor web para desligar o LED
      * @return um LiveData que vai conter a resposta do servidor quando esta estiver disponível
      */
-    public LiveData<Boolean> turnLedOff() {
+    public LiveData<Boolean> fecharCaixa(int caixa) {
 
         // Cria um container do tipo MutableLiveData (um LiveData que pode ter seu conteúdo alterado).
         MutableLiveData<Boolean> result = new MutableLiveData<>();
@@ -89,7 +89,7 @@ public class MainActivityViewModel extends AndroidViewModel {
                 // O método turnLedOff envia uma requisição ao ESP32 pedindo que ele desligue o LED. Ele
                 // retorna um booleano indicando true caso o ESP32 tenha realizado a ação e
                 // false em caso contrário
-                boolean b = repository.turnLedOff();
+                boolean b = repository.fecharCaixa(caixa);
 
                 // Aqui postamos o resultado da operação dentro do LiveData. Quando fazemos isso,
                 // quem estiver observando o LiveData será avisado de que o resultado está disponível.

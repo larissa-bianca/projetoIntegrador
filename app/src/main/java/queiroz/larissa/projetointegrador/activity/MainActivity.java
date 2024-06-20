@@ -26,14 +26,26 @@ import queiroz.larissa.projetointegrador.model.MainActivityViewModel;
 import queiroz.larissa.projetointegrador.util.Config;
 
 public class MainActivity extends AppCompatActivity {
-    boolean CaixaStatus = false;
+    boolean caixaAberta = false;
     static int NEW_ITEM_REQUEST =1;
     MainActivityViewModel vm;
+
+    TextView tvName;
+    TextView tvHrAlarme;
+    TextView tvQtd;
+    TextView tvData;
+    TextView tvDesc;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        tvName = findViewById(R.id.tvName);
+        tvHrAlarme = findViewById(R.id.tvHrAlarme);
+        tvQtd = findViewById(R.id.tvQtd);
+        tvData = findViewById(R.id.tvData);
+        tvDesc = findViewById(R.id.tvDesc);
 
         Button btnEditar = findViewById(R.id.btnEditar);
         btnEditar.setOnClickListener(new View.OnClickListener() {
@@ -48,8 +60,7 @@ public class MainActivity extends AppCompatActivity {
         setSupportActionBar(toolbar);
 
         vm = new ViewModelProvider(this).get(MainActivityViewModel.class);
-        // realiza consulta ao ESP32 para verificar se o LED está ligado ou desligado
-        updateCaixaStatus();
+
 
         Button btnAbreCaixa = findViewById(R.id.btnAbreCaixa);
         btnAbreCaixa.setOnClickListener(new View.OnClickListener() {
@@ -66,8 +77,8 @@ public class MainActivity extends AppCompatActivity {
 
                 // Se o estado atual do botão está ligado, enviamos uma requisição ao ESP32 para
                 // desligar. Caso contrário, enviamos uma requisição ao ESP32 para ligar
-                if(CaixaStatus) {
-                    resLD = vm.turnLedOff();
+                if(caixaAberta) {
+                    resLD = vm.fecharCaixa(1);
                 }
                 else {
                     resLD = vm.turnLedOn();
@@ -82,7 +93,20 @@ public class MainActivity extends AppCompatActivity {
 
                         // Independente se o ESP32 realizou a ação ou não, fazemos uma requisição
                         // ao ESP32 para saber o estado atual do LED
-                        updateCaixaStatus();
+                        if(caixaAberta) {
+                            if(aBoolean) {
+                                caixaAberta = false;
+                                btnAbreCaixa.setText("Fechar Caixa");
+
+                            }
+                        }
+                        else {
+                            if(aBoolean) {
+                                caixaAberta = true;
+                                btnAbreCaixa.setText("Abrir Caixa");
+
+                            }
+                        }
 
                         // reabilitamos novamente o botão que permite ligar/desligar o LED
                         v.setEnabled(true);
@@ -148,52 +172,10 @@ public class MainActivity extends AppCompatActivity {
 
             return true;
         }
-
-        // caso o usuário clique na ação de atualizar, realizamos requisições ao ESP32 para
-        // obter o estado atual do LED e motor
-        if (item.getItemId() == R.id.opUpdate) {
-            updateCaixaStatus();
-            return true;
-        }
         return super.onOptionsItemSelected(item);
     }
-    void updateCaixaStatus() {
 
-        // obtém o textview que exibe o status do LED
-        //TextView tvLedStatusRes = findViewById(R.id.tvLedStatusRes);
 
-        // obtém o button que permite ligar/desligar o LED
-        Button btnAbreCaixa = findViewById(R.id.btnAbreCaixa);
-
-        // envia uma requisição ao ESP32 para saber se o LED está ligado ou desligado
-        LiveData<Boolean> caixaStatusLD = vm.getLedStatus();
-
-        // observa ledStatusLD. Assim que o ESP32 responder, o resultado vai aparecer em ledStatusLD
-        caixaStatusLD.observe(this, new Observer<Boolean>() {
-            @Override
-            public void onChanged(Boolean aBoolean) {
-                // guarda o estado atual do LED
-                CaixaStatus = aBoolean;
-
-                // se o LED está ligado, mudamos o valor de tvLedStatusRes para ligado e mudamos
-                // também o texto que aparece no botão para desligar
-                if(aBoolean) {
-                    btnAbreCaixa.setText("Fechar Caixa");
-                }
-                // se o LED está desligado, mudamos o valor de tvLedStatusRes para desligado e mudamos
-                // também o texto que aparece no botão para ligar
-                else {
-                    btnAbreCaixa.setText("Abrir Caixa");
-                }
-            }
-        });
-    }
-
-    TextView tvName = findViewById(R.id.tvName);
-    TextView tvHrAlarme = findViewById(R.id.tvHrAlarme);
-    TextView tvQtd = findViewById(R.id.tvQtd);
-    TextView tvData = findViewById(R.id.tvData);
-    TextView tvDesc = findViewById(R.id.tvDesc);
 
     @Override
     protected void onActivityResult (int requestCode, int resultCode, Intent data){
@@ -211,6 +193,8 @@ public class MainActivity extends AppCompatActivity {
                 tvData.setText(date);
                 String hora = data.getStringExtra("hora");
                 tvHrAlarme.setText(hora);
+
+
             }
         }
     }
