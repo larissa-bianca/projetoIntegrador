@@ -129,6 +129,11 @@ public class MainActivity extends AppCompatActivity {
                 tvQtd.setText(qtd);
                 String desc = data.getStringExtra("desc");
                 tvDesc.setText(desc);
+
+                String date = data.getStringExtra("date");
+                tvData.setText(date);
+                String hora = data.getStringExtra("hora");
+                tvHrAlarme.setText(hora);
             }
         }
     }
