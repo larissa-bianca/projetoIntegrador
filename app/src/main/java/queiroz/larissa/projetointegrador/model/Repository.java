@@ -6,9 +6,9 @@ import android.util.Log;
 import java.io.IOException;
 import java.io.InputStream;
 
-import trindade.ribeiro.daniel.iotexample.util.Util;
-import trindade.ribeiro.daniel.iotexample.util.Config;
-import trindade.ribeiro.daniel.iotexample.util.HttpRequest;
+import queiroz.larissa.projetointegrador.util.Util;
+import queiroz.larissa.projetointegrador.util.Config;
+import queiroz.larissa.projetointegrador.util.HttpRequest;
 
 public class Repository {
 
