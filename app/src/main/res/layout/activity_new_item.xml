@@ -221,8 +221,9 @@
         android:layout_marginTop="8dp"
         android:hint="data"
         app:layout_constraintBottom_toTopOf="@+id/etDesc"
-        app:layout_constraintTop_toBottomOf="@+id/etQtd"
-        tools:layout_editor_absoluteX="206dp" />
+        app:layout_constraintEnd_toStartOf="@+id/imgBtnData"
+        app:layout_constraintStart_toEndOf="@+id/tvDataVencim"
+        app:layout_constraintTop_toBottomOf="@+id/etQtd" />
 
     <ImageButton
         android:id="@+id/imgBtnData"

@@ -9,9 +9,12 @@ import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 
 import android.app.Activity;
+import android.app.AlarmManager;
+import android.app.PendingIntent;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
+import android.provider.AlarmClock;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -35,6 +38,9 @@ public class MainActivity extends AppCompatActivity {
     TextView tvQtd;
     TextView tvData;
     TextView tvDesc;
+
+    private AlarmManager alarmMgr;
+    private PendingIntent alarmIntent;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -194,8 +200,24 @@ public class MainActivity extends AppCompatActivity {
                 String hora = data.getStringExtra("hora");
                 tvHrAlarme.setText(hora);
 
+                alarme(desc, hora);
 
             }
         }
     }
+
+    protected void alarme(String desc, String h){
+        String[] horaEMin = h.split(":");
+        int hora = Integer.valueOf(horaEMin[0]);
+        int min =  Integer.valueOf(horaEMin[1]);
+
+        Intent intent = new Intent(AlarmClock.ACTION_SET_ALARM)
+                .putExtra(AlarmClock.EXTRA_MESSAGE, desc)
+                .putExtra(AlarmClock.EXTRA_HOUR, hora)
+                .putExtra(AlarmClock.EXTRA_MINUTES, min);
+        if (intent.resolveActivity(getPackageManager()) != null) {
+            startActivity(intent);
+        }
+    }
+
 }
