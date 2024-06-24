@@ -109,7 +109,7 @@ public class NewItemActivity extends AppCompatActivity {
             public void onClick(View v) {
                 String[] choices = {"1h em 1h", "2h em 2h", "1 dia"};
 
-                AlertDialog.Builder builder = AlertDialog.Builder(context);
+                AlertDialog.Builder builder = AlertDialog.Builder(this);
                 builder
                         .setTitle("Selecione a Frequência")
                         .setPositiveButton("selecionar", (dialog, which) -> {
@@ -123,6 +123,7 @@ public class NewItemActivity extends AppCompatActivity {
                 dialog.show();
             }
         });
+
 
         Button btnAddItem = findViewById(R.id.btnAddItem);
         btnAddItem.setOnClickListener(new View.OnClickListener() {
