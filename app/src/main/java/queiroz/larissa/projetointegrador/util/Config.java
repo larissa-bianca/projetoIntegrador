@@ -41,6 +41,10 @@ public class Config {
 
         obj.put("hora", compartimento.hora);
         obj.put("nome", compartimento.nome);
+        obj.put("data", compartimento.data);
+        obj.put("qtd", compartimento.qtd);
+        obj.put("desc", compartimento.desc);
+
 
         SharedPreferences mPrefs = context.getSharedPreferences("configs", 0);
         SharedPreferences.Editor mEditor = mPrefs.edit();
@@ -60,6 +64,9 @@ public class Config {
         Compartimento c = new Compartimento();
         c.hora = obj.getString("hora");
         c.nome = obj.getString("nome");
+        c.hora = obj.getString("hora");
+        c.qtd = obj.getString("qtd");
+        c.desc = obj.getString("desc");
         return c;
     }
 }

@@ -124,11 +124,10 @@ public class Repository {
         return false;
     }
 
-    /*
-    public boolean abrirCaixa1() {
+    public boolean abrirCaixa(int caixa) {
 
         // Cria uma requisição HTTP a ser enviada ao ESP32
-        HttpRequest httpRequest = new HttpRequest("http://" + Config.getESP32Address(context) + "/bot1", "GET", "UTF-8");
+        HttpRequest httpRequest = new HttpRequest("http://" + Config.getESP32Address(context) + "/bot" + String.valueOf(caixa), "GET", "UTF-8");
 
         String result = "";
         try {
@@ -156,164 +155,7 @@ public class Repository {
         return false;
     }
 
-    public boolean abrirCaixa2() {
-
-        // Cria uma requisição HTTP a ser enviada ao ESP32
-        HttpRequest httpRequest = new HttpRequest("http://" + Config.getESP32Address(context) + "/bot2", "GET", "UTF-8");
-
-        String result = "";
-        try {
-            // Executa a requisição HTTP. É neste momento que o ESP32 é contactado. Ao executar
-            // a requisição é aberto um fluxo de dados entre o ESP32 e a app (InputStream is).
-            InputStream is = httpRequest.execute();
-
-            // Obtém a resposta fornecida pelo ESP32. O InputStream é convertido em uma String.
-            //
-            // Em caso de sucesso, 1. Falha, 0:
-            result = Util.inputStream2String(is, "UTF-8");
-
-            Log.i("HTTP REGISTER RESULT", result);
-
-            // Fecha a conexão com o ESP32.
-            httpRequest.finish();
-
-            // Se result igual a 1, significa que o usuário foi registrado com sucesso.
-            if(result.equals("1")) {
-                return true;
-            }
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        return false;
-    }
-
-    public boolean abrirCaixa3() {
-
-        // Cria uma requisição HTTP a ser enviada ao ESP32
-        HttpRequest httpRequest = new HttpRequest("http://" + Config.getESP32Address(context) + "/bot3", "GET", "UTF-8");
-
-        String result = "";
-        try {
-            // Executa a requisição HTTP. É neste momento que o ESP32 é contactado. Ao executar
-            // a requisição é aberto um fluxo de dados entre o ESP32 e a app (InputStream is).
-            InputStream is = httpRequest.execute();
-
-            // Obtém a resposta fornecida pelo ESP32. O InputStream é convertido em uma String.
-            //
-            // Em caso de sucesso, 1. Falha, 0:
-            result = Util.inputStream2String(is, "UTF-8");
-
-            Log.i("HTTP REGISTER RESULT", result);
-
-            // Fecha a conexão com o ESP32.
-            httpRequest.finish();
-
-            // Se result igual a 1, significa que o usuário foi registrado com sucesso.
-            if(result.equals("1")) {
-                return true;
-            }
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        return false;
-    }
-
-    //fecha compartimentos
-    public boolean fechar1() {
-
-        // Cria uma requisição HTTP a ser enviada ao ESP32
-        HttpRequest httpRequest = new HttpRequest("http://" + Config.getESP32Address(context) + "/close1", "GET", "UTF-8");
-
-        String result = "";
-        try {
-            // Executa a requisição HTTP. É neste momento que o ESP32 é contactado. Ao executar
-            // a requisição é aberto um fluxo de dados entre o ESP32 e a app (InputStream is).
-            InputStream is = httpRequest.execute();
-
-            // Obtém a resposta fornecida pelo ESP32. O InputStream é convertido em uma String.
-            //
-            // Em caso de sucesso, 1. Falha, 0:
-            result = Util.inputStream2String(is, "UTF-8");
-
-            Log.i("HTTP REGISTER RESULT", result);
-
-            // Fecha a conexão com o ESP32.
-            httpRequest.finish();
-
-            // Se result igual a 1, significa que o usuário foi registrado com sucesso.
-            if(result.equals("1")) {
-                return true;
-            }
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        return false;
-    }
-
-    public boolean fechar2() {
-
-        // Cria uma requisição HTTP a ser enviada ao ESP32
-        HttpRequest httpRequest = new HttpRequest("http://" + Config.getESP32Address(context) + "/close2", "GET", "UTF-8");
-
-        String result = "";
-        try {
-            // Executa a requisição HTTP. É neste momento que o ESP32 é contactado. Ao executar
-            // a requisição é aberto um fluxo de dados entre o ESP32 e a app (InputStream is).
-            InputStream is = httpRequest.execute();
-
-            // Obtém a resposta fornecida pelo ESP32. O InputStream é convertido em uma String.
-            //
-            // Em caso de sucesso, 1. Falha, 0:
-            result = Util.inputStream2String(is, "UTF-8");
-
-            Log.i("HTTP REGISTER RESULT", result);
-
-            // Fecha a conexão com o ESP32.
-            httpRequest.finish();
-
-            // Se result igual a 1, significa que o usuário foi registrado com sucesso.
-            if(result.equals("1")) {
-                return true;
-            }
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        return false;
-    }
-
-    public boolean fechar3() {
-
-        // Cria uma requisição HTTP a ser enviada ao ESP32
-        HttpRequest httpRequest = new HttpRequest("http://" + Config.getESP32Address(context) + "/close3", "GET", "UTF-8");
-
-        String result = "";
-        try {
-            // Executa a requisição HTTP. É neste momento que o ESP32 é contactado. Ao executar
-            // a requisição é aberto um fluxo de dados entre o ESP32 e a app (InputStream is).
-            InputStream is = httpRequest.execute();
-
-            // Obtém a resposta fornecida pelo ESP32. O InputStream é convertido em uma String.
-            //
-            // Em caso de sucesso, 1. Falha, 0:
-            result = Util.inputStream2String(is, "UTF-8");
-
-            Log.i("HTTP REGISTER RESULT", result);
-
-            // Fecha a conexão com o ESP32.
-            httpRequest.finish();
-
-            // Se result igual a 1, significa que o usuário foi registrado com sucesso.
-            if(result.equals("1")) {
-                return true;
-            }
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        return false;
-    }
-
-    //liga led rgb
-    public boolean turnLedOn() {
+    public boolean ligarLed() {
 
         // Cria uma requisição HTTP a ser enviada ao ESP32
         HttpRequest httpRequest = new HttpRequest("http://" + Config.getESP32Address(context) + "/ledH", "GET", "UTF-8");
@@ -342,15 +184,12 @@ public class Repository {
             e.printStackTrace();
         }
         return false;
-
     }
 
-    //obtem status compartimentos
-
-    public boolean getCaixa1Status() {
+    public boolean desligarLed() {
 
         // Cria uma requisição HTTP a ser enviada ao ESP32
-        HttpRequest httpRequest = new HttpRequest("http://" + Config.getESP32Address(context) + "/status_caixa1", "GET", "UTF-8");
+        HttpRequest httpRequest = new HttpRequest("http://" + Config.getESP32Address(context) + "/ledL", "GET", "UTF-8");
 
         String result = "";
         try {
@@ -376,10 +215,41 @@ public class Repository {
             e.printStackTrace();
         }
         return false;
-
     }
 
-    */
+    public boolean piscarBuzzer() {
+
+        // Cria uma requisição HTTP a ser enviada ao ESP32
+        HttpRequest httpRequest = new HttpRequest("http://" + Config.getESP32Address(context) + "/buzzerH", "GET", "UTF-8");
+
+        String result = "";
+        try {
+            // Executa a requisição HTTP. É neste momento que o ESP32 é contactado. Ao executar
+            // a requisição é aberto um fluxo de dados entre o ESP32 e a app (InputStream is).
+            InputStream is = httpRequest.execute();
+
+            // Obtém a resposta fornecida pelo ESP32. O InputStream é convertido em uma String.
+            //
+            // Em caso de sucesso, 1. Falha, 0:
+            result = Util.inputStream2String(is, "UTF-8");
+
+            Log.i("HTTP REGISTER RESULT", result);
+
+            // Fecha a conexão com o ESP32.
+            httpRequest.finish();
+
+            // Se result igual a 1, significa que o usuário foi registrado com sucesso.
+            if(result.equals("1")) {
+                return true;
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return false;
+    }
+
+
+
     /**
      * Método que cria uma requisição HTTP para ligar o motor.
      * @return true se o LED foi ligado com sucesso

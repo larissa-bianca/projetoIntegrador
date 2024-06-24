@@ -81,7 +81,7 @@ public class MainActivity extends AppCompatActivity {
                     resLD = vm.fecharCaixa(1);
                 }
                 else {
-                    resLD = vm.turnLedOn();
+                    resLD = vm.abrirCaixa(1);
                 }
 
                 // depois de enviar a requisição ao ESP32, nós observamos a variável que resLD.
