@@ -19,6 +19,7 @@ import android.widget.TimePicker;
 import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
@@ -93,11 +94,33 @@ public class NewItemActivity extends AppCompatActivity {
                             public void onDateSet(DatePicker view, int year,
                                                   int monthOfYear, int dayOfMonth) {
 
-                                tvDate.setText(dayOfMonth + "-" + (monthOfYear + 1) + "-" + year);
+                                tvDate.setText(dayOfMonth + "/" + (monthOfYear + 1) + "/" + year);
 
                             }
                         }, Year, Month, Day);
                 datePickerDialog.show();
+            }
+        });
+
+        TextView tvFreq = findViewById(R.id.tvFreq);
+        ImageButton imgBtnFreq = findViewById(R.id.imgBtnFreq);
+        imgBtnFreq.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String[] choices = {"1h em 1h", "2h em 2h", "1 dia"};
+
+                AlertDialog.Builder builder = AlertDialog.Builder(context);
+                builder
+                        .setTitle("Selecione a Frequência")
+                        .setPositiveButton("selecionar", (dialog, which) -> {
+
+                        })
+                        .setSingleChoiceItems(choices, 0, (dialog, which) -> {
+
+                        });
+
+                AlertDialog dialog = builder.create();
+                dialog.show();
             }
         });
 
