@@ -67,7 +67,7 @@ public class Config {
         Compartimento c = new Compartimento();
         c.hora = obj.getString("hora");
         c.nome = obj.getString("nome");
-        c.hora = obj.getString("hora");
+        c.data = obj.getString("data");
         c.qtd = obj.getString("qtd");
         c.desc = obj.getString("desc");
         return c;
