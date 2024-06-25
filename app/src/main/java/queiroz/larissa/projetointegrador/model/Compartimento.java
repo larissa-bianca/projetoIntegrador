@@ -8,4 +8,15 @@ public class Compartimento {
    public String data;
    public String[] dias;
 
+   public int getHoras() {
+      String[] horaEMin = this.hora.split(":");
+      int horas = Integer.parseInt(horaEMin[0]);
+      return horas;
+   }
+
+   public int getMinutos() {
+      String[] horaEMin = this.hora.split(":");
+      int min = Integer.parseInt(horaEMin[1]);
+      return min;
+   }
 }

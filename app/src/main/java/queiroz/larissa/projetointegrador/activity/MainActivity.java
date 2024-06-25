@@ -137,27 +137,31 @@ public class MainActivity extends AppCompatActivity {
                 resLD.observe(MainActivity.this, new Observer<Boolean>() {
                     @Override
                     public void onChanged(Boolean aBoolean) {
-
-                        // Independente se o ESP32 realizou a ação ou não, fazemos uma requisição
-                        // ao ESP32 para saber o estado atual do LED
-                        if(caixaAberta) {
-                            if(aBoolean) {
+                        // Verifica se a caixa está aberta
+                        if (caixaAberta) {
+                            // Se a caixa estava aberta e a ação do ESP32 foi bem-sucedida
+                            if (aBoolean) {
+                                // Atualiza o estado da caixa para fechada
                                 caixaAberta = false;
+                                // Atualiza o texto do botão para "Fechar Caixa"
                                 btnAbreCaixa.setText("Fechar Caixa");
+                                c1.qtd = Integer.toString(Integer.parseInt(c1.qtd) - 1);
 
                             }
-                        }
-                        else {
-                            if(aBoolean) {
+                        } else {
+                            // Se a caixa estava fechada e a ação do ESP32 foi bem-sucedida
+                            if (aBoolean) {
+                                // Atualiza o estado da caixa para aberta
                                 caixaAberta = true;
+                                // Atualiza o texto do botão para "Abrir Caixa"
                                 btnAbreCaixa.setText("Abrir Caixa");
-
                             }
                         }
 
-                        // reabilitamos novamente o botão que permite ligar/desligar o LED
+                        // Reabilita o botão para permitir novas interações do usuário
                         v.setEnabled(true);
                     }
+
                 });
             }
         });
@@ -236,6 +240,7 @@ public class MainActivity extends AppCompatActivity {
                 c.nome = data.getStringExtra("nome");
                 c.qtd = data.getStringExtra("qtd");
                 c.hora = data.getStringExtra("hora");
+                c.dias = data.getStringArrayExtra("days");
 
                 int caixa = data.getIntExtra("caixa", 0);
 
@@ -253,10 +258,8 @@ public class MainActivity extends AppCompatActivity {
     }
 
     protected void alarme(Compartimento c){
-        String[] horaEMin = c.hora.split(":");
-
-        int hora = Integer.parseInt(horaEMin[0]);
-        int min =  Integer.parseInt(horaEMin[1]);
+        int hora = c.getHoras();
+        int min =  c.getMinutos();
 
         Intent intent = new Intent(AlarmClock.ACTION_SET_ALARM)
                 .putExtra(AlarmClock.EXTRA_MESSAGE, c.nome)
