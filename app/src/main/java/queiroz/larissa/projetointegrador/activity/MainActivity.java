@@ -253,16 +253,16 @@ public class MainActivity extends AppCompatActivity {
     }
 
     protected void alarme(Compartimento c){
-        String[] horaEMin = h.split(":");
+        String[] horaEMin = c.hora.split(":");
 
         int hora = Integer.parseInt(horaEMin[0]);
         int min =  Integer.parseInt(horaEMin[1]);
 
         Intent intent = new Intent(AlarmClock.ACTION_SET_ALARM)
-                .putExtra(AlarmClock.EXTRA_MESSAGE, nome)
+                .putExtra(AlarmClock.EXTRA_MESSAGE, c.nome)
                 .putExtra(AlarmClock.EXTRA_HOUR, hora)
-                .putExtra(AlarmClock.EXTRA_MINUTES, min);
-                .putExtra(AlarmClock.EXTRA_DAYS, dias);
+                .putExtra(AlarmClock.EXTRA_MINUTES, min)
+                .putExtra(AlarmClock.EXTRA_DAYS, c.dias);
         if (intent.resolveActivity(getPackageManager()) != null) {
             startActivity(intent);
         }
