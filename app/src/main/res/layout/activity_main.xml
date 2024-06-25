@@ -81,7 +81,7 @@
                             android:textSize="16sp" />
 
                         <TextView
-                            android:id="@+id/tvNomeRem3"
+                            android:id="@+id/tvNomRem3"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:hint="Nome do Remédio "
@@ -149,13 +149,13 @@
                     </LinearLayout>
 
                     <Button
-                        android:id="@+id/imgBtnAbreCaixa3"
+                        android:id="@+id/btnAbreCaixa3"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text="Abrir Caixa 3" />
 
                     <Button
-                        android:id="@+id/imgBtnEditar3"
+                        android:id="@+id/btnEditar3"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text="Editar" />
@@ -216,7 +216,7 @@
                             android:textSize="16sp" />
 
                         <TextView
-                            android:id="@+id/tvName"
+                            android:id="@+id/tvNomRem1"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:hint="Nome do remédio"

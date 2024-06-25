@@ -24,6 +24,8 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
+import org.json.JSONException;
+
 import queiroz.larissa.projetointegrador.R;
 import queiroz.larissa.projetointegrador.model.Compartimento;
 import queiroz.larissa.projetointegrador.model.MainActivityViewModel;
@@ -35,7 +37,7 @@ public class MainActivity extends AppCompatActivity {
     MainActivityViewModel vm;
 
     TextView tvName;
-    TextView tvHrAlarme;
+    TextView tvHoraAlarme;
     TextView tvQtd;
     TextView tvData;
     TextView tvDesc;
@@ -50,28 +52,54 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        tvName = findViewById(R.id.tvName);
-        tvHrAlarme = findViewById(R.id.tvHrAlarme);
+        tvName = findViewById(R.id.tvNomRem1);
+        tvHoraAlarme = findViewById(R.id.tvHoraAlarme);
         tvQtd = findViewById(R.id.tvQtd);
         tvData = findViewById(R.id.tvData);
         tvDesc = findViewById(R.id.tvDesc);
 
-        c1 = Config.pegarCompartimento(MainActivity.this,1);
-        if(c1 != null) {
-            preencherCaixaUi(1, c1);
+
+        try {
+            c1 = Config.pegarCompartimento(MainActivity.this,1);
+            if(c1 != null) {
+                preencherCaixaUi(1, c1);
+            }
+
+            c2 = Config.pegarCompartimento(MainActivity.this,2);
+            if(c2 != null) {
+                preencherCaixaUi(2, c2);
+            }
+
+            c3 = Config.pegarCompartimento(MainActivity.this,3);
+            if(c3 != null) {
+                preencherCaixaUi(3, c3);
+            }
+        } catch (JSONException e) {
+            e.printStackTrace();
         }
 
-        c2 = Config.pegarCompartimento(MainActivity.this,2);
-        if(c2 != null) {
-            preencherCaixaUi(2, c2);
-        }
-        c3 = Config.pegarCompartimento(MainActivity.this,3);
 
         Button btnEditar = findViewById(R.id.btnEditar);
         btnEditar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 navegarEditarCaixa(1);
+            }
+        });
+
+        Button btnEditar2 = findViewById(R.id.btnEditar2);
+        btnEditar2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                navegarEditarCaixa(2);
+            }
+        });
+
+        Button btnEditar3 = findViewById(R.id.btnEditar3);
+        btnEditar3.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                navegarEditarCaixa(3);
             }
         });
 
@@ -202,17 +230,23 @@ public class MainActivity extends AppCompatActivity {
         if (requestCode == NEW_ITEM_REQUEST){
             if(resultCode== Activity.RESULT_OK){
 
-
                 Compartimento c = new Compartimento();
                 c.data = data.getStringExtra("date");
-                c.desc = desc;
+                c.desc = data.getStringExtra("desc");
+                c.nome = data.getStringExtra("nome");
+                c.qtd = data.getStringExtra("qtd");
+                c.hora = data.getStringExtra("hora");
 
                 int caixa = data.getIntExtra("caixa", 0);
 
-                Config.salvarCompartimento(MainActivity.this, , c );
+                try {
+                    Config.salvarCompartimento(MainActivity.this, caixa, c);
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
                 preencherCaixaUi(caixa, c);
 
-                alarme(desc, hora);
+                alarme(c.desc, c.hora);
 
             }
         }
@@ -239,17 +273,39 @@ public class MainActivity extends AppCompatActivity {
     }
 
     void preencherCaixaUi( int caixa, Compartimento c) {
+        if(caixa == 1){
+            tvName = findViewById(R.id.tvNomRem1);
+            tvHoraAlarme = findViewById(R.id.tvHoraAlarme);
+            tvQtd = findViewById(R.id.tvQtd);
+            tvData = findViewById(R.id.tvData);
+            tvDesc = findViewById(R.id.tvDesc);
+        }
+        else if (caixa==2){
+            tvName = findViewById(R.id.tvNomRem2);
+            tvHoraAlarme = findViewById(R.id.tvHrAlarm2);
+            tvQtd = findViewById(R.id.tvQtd2);
+            tvData = findViewById(R.id.tvData2);
+            tvDesc = findViewById(R.id.tvDesc2);
+        }
+        else if (caixa == 3){
+            tvName = findViewById(R.id.tvNomRem3);
+            tvHoraAlarme = findViewById(R.id.tvHrAlarme3);
+            tvQtd = findViewById(R.id.tvQtd3);
+            tvData = findViewById(R.id.tvData3);
+            tvDesc = findViewById(R.id.tvDesc3);
+        }
+
         String name = c.nome;
         tvName.setText(name);
-        String qtd = data.getStringExtra("qtd");
+        String qtd = c.qtd;
         tvQtd.setText(qtd);
-        String desc = data.getStringExtra("desc");
+        String desc = c.desc;
         tvDesc.setText(desc);
 
-        String date = data.getStringExtra("date");
+        String date = c.data;
         tvData.setText(date);
-        String hora = data.getStringExtra("hora");
-        tvHrAlarme.setText(hora);
+        String hora = c.hora;
+        tvHoraAlarme.setText(hora);
     }
 
 }
