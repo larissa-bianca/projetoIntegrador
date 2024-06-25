@@ -201,12 +201,6 @@ public class NewItemActivity extends AppCompatActivity {
                     return;
                 }
 
-                String hora = tvHora.getText().toString();
-                if (hora.isEmpty()){
-                    Toast.makeText(NewItemActivity.this,"É necessário selecionar uma Hora",Toast.LENGTH_LONG).show();
-                    return;
-                }
-
                 Intent i = new Intent();
                 i.putExtra("nome", name);
                 i.putExtra("qtd",qtd);
