@@ -28,6 +28,8 @@ import androidx.core.view.WindowInsetsCompat;
 import java.sql.Time;
 
 import queiroz.larissa.projetointegrador.R;
+import queiroz.larissa.projetointegrador.model.Compartimento;
+import queiroz.larissa.projetointegrador.util.Config;
 
 public class NewItemActivity extends AppCompatActivity {
 
@@ -41,6 +43,9 @@ public class NewItemActivity extends AppCompatActivity {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
         });
+
+        Intent i = getIntent();
+        int caixa = i.getIntExtra("caixa", 0);
 
 
         TextView tvHora = findViewById(R.id.tvHora);
@@ -107,20 +112,7 @@ public class NewItemActivity extends AppCompatActivity {
         imgBtnFreq.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String[] choices = {"1h em 1h", "2h em 2h", "1 dia"};
 
-                AlertDialog.Builder builder = AlertDialog.Builder(this);
-                builder
-                        .setTitle("Selecione a Frequência")
-                        .setPositiveButton("selecionar", (dialog, which) -> {
-
-                        })
-                        .setSingleChoiceItems(choices, 0, (dialog, which) -> {
-
-                        });
-
-                AlertDialog dialog = builder.create();
-                dialog.show();
             }
         });
 
@@ -165,6 +157,7 @@ public class NewItemActivity extends AppCompatActivity {
 
                 i.putExtra("date", date);
                 i.putExtra("hora", hora);
+                i.putExtra("caixa", caixa);
 
                 //i.put???? como adicionar a data e a hora aqui
                 setResult(Activity.RESULT_OK, i);

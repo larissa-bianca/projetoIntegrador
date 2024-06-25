@@ -25,6 +25,7 @@ import android.widget.EditText;
 import android.widget.TextView;
 
 import queiroz.larissa.projetointegrador.R;
+import queiroz.larissa.projetointegrador.model.Compartimento;
 import queiroz.larissa.projetointegrador.model.MainActivityViewModel;
 import queiroz.larissa.projetointegrador.util.Config;
 
@@ -38,6 +39,8 @@ public class MainActivity extends AppCompatActivity {
     TextView tvQtd;
     TextView tvData;
     TextView tvDesc;
+
+    Compartimento c1, c2, c3;
 
     private AlarmManager alarmMgr;
     private PendingIntent alarmIntent;
@@ -53,12 +56,22 @@ public class MainActivity extends AppCompatActivity {
         tvData = findViewById(R.id.tvData);
         tvDesc = findViewById(R.id.tvDesc);
 
+        c1 = Config.pegarCompartimento(MainActivity.this,1);
+        if(c1 != null) {
+            preencherCaixaUi(1, c1);
+        }
+
+        c2 = Config.pegarCompartimento(MainActivity.this,2);
+        if(c2 != null) {
+            preencherCaixaUi(2, c2);
+        }
+        c3 = Config.pegarCompartimento(MainActivity.this,3);
+
         Button btnEditar = findViewById(R.id.btnEditar);
         btnEditar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent i = new Intent(MainActivity.this,NewItemActivity.class);
-                startActivityForResult(i,NEW_ITEM_REQUEST);
+                navegarEditarCaixa(1);
             }
         });
 
@@ -188,17 +201,16 @@ public class MainActivity extends AppCompatActivity {
         super.onActivityResult(requestCode, resultCode, data);
         if (requestCode == NEW_ITEM_REQUEST){
             if(resultCode== Activity.RESULT_OK){
-                String name = data.getStringExtra("name");
-                tvName.setText(name);
-                String qtd = data.getStringExtra("qtd");
-                tvQtd.setText(qtd);
-                String desc = data.getStringExtra("desc");
-                tvDesc.setText(desc);
 
-                String date = data.getStringExtra("date");
-                tvData.setText(date);
-                String hora = data.getStringExtra("hora");
-                tvHrAlarme.setText(hora);
+
+                Compartimento c = new Compartimento();
+                c.data = data.getStringExtra("date");
+                c.desc = desc;
+
+                int caixa = data.getIntExtra("caixa", 0);
+
+                Config.salvarCompartimento(MainActivity.this, , c );
+                preencherCaixaUi(caixa, c);
 
                 alarme(desc, hora);
 
@@ -218,6 +230,26 @@ public class MainActivity extends AppCompatActivity {
         if (intent.resolveActivity(getPackageManager()) != null) {
             startActivity(intent);
         }
+    }
+
+    void navegarEditarCaixa( int caixa) {
+        Intent i = new Intent(MainActivity.this,NewItemActivity.class);
+        i.putExtra("caixa", caixa);
+        startActivityForResult(i,NEW_ITEM_REQUEST);
+    }
+
+    void preencherCaixaUi( int caixa, Compartimento c) {
+        String name = c.nome;
+        tvName.setText(name);
+        String qtd = data.getStringExtra("qtd");
+        tvQtd.setText(qtd);
+        String desc = data.getStringExtra("desc");
+        tvDesc.setText(desc);
+
+        String date = data.getStringExtra("date");
+        tvData.setText(date);
+        String hora = data.getStringExtra("hora");
+        tvHrAlarme.setText(hora);
     }
 
 }

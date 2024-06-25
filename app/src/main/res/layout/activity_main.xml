@@ -31,9 +31,9 @@
                 <LinearLayout
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="8dp"
-                    android:layout_marginTop="8dp"
-                    android:layout_marginEnd="8dp"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginTop="16dp"
+                    android:layout_marginEnd="16dp"
                     android:orientation="vertical"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
@@ -152,7 +152,7 @@
                         android:id="@+id/imgBtnAbreCaixa3"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="Abrir Caixa" />
+                        android:text="Abrir Caixa 3" />
 
                     <Button
                         android:id="@+id/imgBtnEditar3"
@@ -166,9 +166,9 @@
                     android:id="@+id/linearLayout2"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="8dp"
-                    android:layout_marginTop="16dp"
-                    android:layout_marginEnd="8dp"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginTop="24dp"
+                    android:layout_marginEnd="16dp"
                     android:orientation="vertical"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
@@ -289,7 +289,7 @@
                         android:id="@+id/btnAbreCaixa"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="Abrir Caixa"
+                        android:text="Abrir Caixa 1"
                         android:textAlignment="center" />
 
                     <Button
@@ -304,9 +304,9 @@
                     android:id="@+id/linearLayout"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="8dp"
-                    android:layout_marginTop="8dp"
-                    android:layout_marginEnd="8dp"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginTop="16dp"
+                    android:layout_marginEnd="16dp"
                     android:orientation="vertical"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
@@ -429,7 +429,7 @@
                         android:id="@+id/btnAbreCaixa2"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="Abrir Caixa" />
+                        android:text="Abrir Caixa 2" />
 
                     <Button
                         android:id="@+id/btnEditar2"

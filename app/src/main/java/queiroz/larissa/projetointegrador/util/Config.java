@@ -59,6 +59,9 @@ public class Config {
     public static Compartimento pegarCompartimento(Context context, int caixa) throws JSONException {
         SharedPreferences mPrefs = context.getSharedPreferences("configs", 0);
         String caixaJson = mPrefs.getString("caixa" + String.valueOf(caixa), "");
+        if(caixaJson.isEmpty()) {
+            return null;
+        }
 
         JSONObject obj = new JSONObject(caixaJson);
         Compartimento c = new Compartimento();
