@@ -120,7 +120,7 @@ public class NewItemActivity extends AppCompatActivity {
         ImageButton imgBtnFreq = findViewById(R.id.imgBtnFreq);
 
         final String[] diasSemana = {
-                "Domingo", "Segunda", "Terça", "Quarta", "Quinta", "Sexta", "Sábado"
+                "Dom", "Seg", "Ter", "Qua", "Qui", "Sex", "Sáb"
         };
         final String[] daysWeek = {
                 "SUNDAY", "MONDAY", "TUESDAY", "WEDNESDAY", "THURSDAY", "FRIDAY", "SATURDAY"
@@ -205,6 +205,11 @@ public class NewItemActivity extends AppCompatActivity {
                     Toast.makeText(NewItemActivity.this,"É necessário selecionar uma Hora",Toast.LENGTH_LONG).show();
                     return;
                 }
+                String diasPT = tvFreq.getText().toString();
+                if (diasPT.isEmpty()){
+                    Toast.makeText(NewItemActivity.this,"É necessário selecionar uma Frequência",Toast.LENGTH_LONG).show();
+                    return;
+                }
 
                 Intent i = new Intent();
                 i.putExtra("nome", name);
@@ -214,7 +219,9 @@ public class NewItemActivity extends AppCompatActivity {
                 i.putExtra("date", date);
                 i.putExtra("hora", hora);
                 i.putExtra("caixa", caixa);
+                i.putExtra("diasPT", diasPT);
                 i.putStringArrayListExtra("dias", days);
+
 
                 setResult(Activity.RESULT_OK, i);
                 finish();

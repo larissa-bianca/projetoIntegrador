@@ -4,6 +4,7 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+import androidx.core.app.ActivityCompat;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
@@ -13,6 +14,8 @@ import android.app.AlarmManager;
 import android.app.PendingIntent;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.pm.PackageManager;
+import android.os.Build;
 import android.os.Bundle;
 import android.provider.AlarmClock;
 import android.view.LayoutInflater;
@@ -23,8 +26,12 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.Manifest;
 
 import org.json.JSONException;
+
+import java.util.ArrayList;
+import java.util.List;
 
 import queiroz.larissa.projetointegrador.R;
 import queiroz.larissa.projetointegrador.model.Compartimento;
@@ -32,6 +39,9 @@ import queiroz.larissa.projetointegrador.model.MainActivityViewModel;
 import queiroz.larissa.projetointegrador.util.Config;
 
 public class MainActivity extends AppCompatActivity {
+
+    static int RESULT_REQUEST_PERMISSION = 2;
+
     boolean caixaAberta = false;
     static int NEW_ITEM_REQUEST =1;
     MainActivityViewModel vm;
@@ -41,6 +51,7 @@ public class MainActivity extends AppCompatActivity {
     TextView tvQtd;
     TextView tvData;
     TextView tvDesc;
+    TextView tvFreq;
 
     Compartimento c1, c2, c3;
 
@@ -51,6 +62,11 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        List<String> permissions = new ArrayList<>();
+        permissions.add(Manifest.permission.SET_ALARM);
+
+        checkForPermissions(permissions);
 
         tvName = findViewById(R.id.tvNomRem1);
         tvHoraAlarme = findViewById(R.id.tvHoraAlarme);
@@ -241,6 +257,7 @@ public class MainActivity extends AppCompatActivity {
                 c.qtd = data.getStringExtra("qtd");
                 c.hora = data.getStringExtra("hora");
                 c.dias = data.getStringArrayExtra("days");
+                c.diasPT = data.getStringExtra("diasPT");
 
                 int caixa = data.getIntExtra("caixa", 0);
 
@@ -284,6 +301,7 @@ public class MainActivity extends AppCompatActivity {
             tvQtd = findViewById(R.id.tvQtd);
             tvData = findViewById(R.id.tvData);
             tvDesc = findViewById(R.id.tvDesc);
+            tvFreq = findViewById(R.id.tvFreq1);
         }
         else if (caixa==2){
             tvName = findViewById(R.id.tvNomRem2);
@@ -291,6 +309,7 @@ public class MainActivity extends AppCompatActivity {
             tvQtd = findViewById(R.id.tvQtd2);
             tvData = findViewById(R.id.tvData2);
             tvDesc = findViewById(R.id.tvDesc2);
+            tvFreq = findViewById(R.id.tvFreq2);
         }
         else if (caixa == 3){
             tvName = findViewById(R.id.tvNomRem3);
@@ -298,6 +317,7 @@ public class MainActivity extends AppCompatActivity {
             tvQtd = findViewById(R.id.tvQtd3);
             tvData = findViewById(R.id.tvData3);
             tvDesc = findViewById(R.id.tvDesc3);
+            tvFreq = findViewById(R.id.tvFreq3);
         }
 
         String name = c.nome;
@@ -311,6 +331,61 @@ public class MainActivity extends AppCompatActivity {
         tvData.setText(date);
         String hora = c.hora;
         tvHoraAlarme.setText(hora);
+        String diasSelecionados = c.diasPT;
+        tvFreq.setText(diasSelecionados);
+
+    }
+
+    private void checkForPermissions(List<String> permissions) {
+        List<String> permissionsNotGranted = new ArrayList<>();
+
+        for(String permission : permissions) {
+            if( !hasPermission(permission)) {
+                permissionsNotGranted.add(permission);
+            }
+        }
+
+        if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+            if(permissionsNotGranted.size() > 0) {
+                requestPermissions(permissionsNotGranted.toArray(new String[permissionsNotGranted.size()]), RESULT_REQUEST_PERMISSION);
+            }
+        }
+    }
+
+    private boolean hasPermission(String permission) {
+        if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+            return ActivityCompat.checkSelfPermission(MainActivity.this, permission) == PackageManager.PERMISSION_GRANTED;
+        }
+        return false;
+    }
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+
+        final List<String> permissionsRejected = new ArrayList<>();
+        if(requestCode == RESULT_REQUEST_PERMISSION) {
+            for(String permission : permissions) {
+                if(!hasPermission(permission)) {
+                    permissionsRejected.add(permission);
+                }
+            }
+        }
+
+        if(permissionsRejected.size() > 0) {
+            if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+                if(shouldShowRequestPermissionRationale(permissionsRejected.get(0))) {
+                    new AlertDialog.Builder(MainActivity.this)
+                            .setMessage("Para usar essa app é preciso conceder essas permissões")
+                            .setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                                @Override
+                                public void onClick(DialogInterface dialog, int which) {
+                                    requestPermissions(permissionsRejected.toArray(new String[permissionsRejected.size()]), RESULT_REQUEST_PERMISSION);
+                                }
+                            }).create().show();
+                }
+            }
+        }
     }
 
 }

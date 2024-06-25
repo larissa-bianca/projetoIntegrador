@@ -7,6 +7,7 @@ public class Compartimento {
    public String desc;
    public String data;
    public String[] dias;
+   public String diasPT;
 
    public int getHoras() {
       String[] horaEMin = this.hora.split(":");
