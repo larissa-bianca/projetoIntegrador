@@ -6,5 +6,6 @@ public class Compartimento {
    public String qtd;
    public String desc;
    public String data;
+   public String[] dias;
 
 }

@@ -38,6 +38,7 @@ import queiroz.larissa.projetointegrador.util.Config;
 
 public class NewItemActivity extends AppCompatActivity {
     private ArrayList<String> diasSelecionados = new ArrayList<>(); // Declarar como variável de instância
+    private ArrayList<String> days = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -121,6 +122,9 @@ public class NewItemActivity extends AppCompatActivity {
         final String[] diasSemana = {
                 "Domingo", "Segunda", "Terça", "Quarta", "Quinta", "Sexta", "Sábado"
         };
+        final String[] daysWeek = {
+                "SUNDAY", "MONDAY", "TUESDAY", "WEDNESDAY", "THURSDAY", "FRIDAY", "SATURDAY"
+        };
 
         final boolean[] checados = new boolean[diasSemana.length];
         final List<String> selecionados = Arrays.asList(diasSemana);
@@ -146,6 +150,7 @@ public class NewItemActivity extends AppCompatActivity {
                     for (int i = 0; i < checados.length; i++) {
                         if (checados[i]) {
                             diasSelecionados.add(diasSemana[i]);
+                            days.add(daysWeek[i]);
                         }
                     }
                     tvFreq.setText(TextUtils.join(", ", diasSelecionados));
@@ -209,7 +214,7 @@ public class NewItemActivity extends AppCompatActivity {
                 i.putExtra("date", date);
                 i.putExtra("hora", hora);
                 i.putExtra("caixa", caixa);
-                i.putStringArrayListExtra("dias", diasSelecionados);
+                i.putStringArrayListExtra("dias", days);
 
                 setResult(Activity.RESULT_OK, i);
                 finish();

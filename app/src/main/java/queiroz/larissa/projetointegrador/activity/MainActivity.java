@@ -246,13 +246,13 @@ public class MainActivity extends AppCompatActivity {
                 }
                 preencherCaixaUi(caixa, c);
 
-                alarme(c.desc, c.hora);
+                alarme(c);
 
             }
         }
     }
 
-    protected void alarme(String nome, String h, String d){
+    protected void alarme(Compartimento c){
         String[] horaEMin = h.split(":");
 
         int hora = Integer.parseInt(horaEMin[0]);
