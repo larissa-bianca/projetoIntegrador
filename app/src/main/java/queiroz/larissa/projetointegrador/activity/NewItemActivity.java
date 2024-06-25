@@ -8,6 +8,7 @@ import android.app.TimePickerDialog;
 import android.content.Intent;
 import android.icu.util.Calendar;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.text.format.DateFormat;
 import android.view.View;
 import android.widget.Button;
@@ -19,6 +20,7 @@ import android.widget.TimePicker;
 import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
+import androidx.annotation.ChecksSdkIntAtLeast;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.graphics.Insets;
@@ -26,12 +28,16 @@ import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
 import java.sql.Time;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 
 import queiroz.larissa.projetointegrador.R;
 import queiroz.larissa.projetointegrador.model.Compartimento;
 import queiroz.larissa.projetointegrador.util.Config;
 
 public class NewItemActivity extends AppCompatActivity {
+    private ArrayList<String> diasSelecionados = new ArrayList<>(); // Declarar como variável de instância
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -79,6 +85,7 @@ public class NewItemActivity extends AppCompatActivity {
             }
         });
 
+
         TextView tvDate = findViewById(R.id.tvDate);
 
         ImageButton imgBtnData = findViewById(R.id.imgBtnData);
@@ -107,11 +114,55 @@ public class NewItemActivity extends AppCompatActivity {
             }
         });
 
+
         TextView tvFreq = findViewById(R.id.tvFreq);
         ImageButton imgBtnFreq = findViewById(R.id.imgBtnFreq);
+
+        final String[] diasSemana = {
+                "Domingo", "Segunda", "Terça", "Quarta", "Quinta", "Sexta", "Sábado"
+        };
+
+        final boolean[] checados = new boolean[diasSemana.length];
+        final List<String> selecionados = Arrays.asList(diasSemana);
+
         imgBtnFreq.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                tvFreq.setText(null);
+
+                AlertDialog.Builder builder = new AlertDialog.Builder(NewItemActivity.this);
+                builder.setTitle("Escolha os dias");
+
+                builder.setMultiChoiceItems(diasSemana, checados, (dialog, which, isChecked) -> {
+                    checados[which] = isChecked;
+                    String currentItem = selecionados.get(which);
+                });
+
+                builder.setCancelable(false);
+
+                builder.setPositiveButton("Feito", (dialog, which) -> {
+                    diasSelecionados.clear();
+                    //List<String> diasSelecionados = new ArrayList<>();
+                    for (int i = 0; i < checados.length; i++) {
+                        if (checados[i]) {
+                            diasSelecionados.add(diasSemana[i]);
+                        }
+                    }
+                    tvFreq.setText(TextUtils.join(", ", diasSelecionados));
+
+                });
+
+                builder.setNegativeButton("CANCELAR", (dialog, which) -> {});
+
+                builder.setNeutralButton("LIMPAR", (dialog, which) -> {
+                    Arrays.fill(checados, false);
+                    diasSelecionados.clear(); // Limpa a lista de dias selecionados
+                    tvFreq.setText("");  // Limpa o TextView
+                });
+
+                builder.create();
+                AlertDialog alertDialog = builder.create();
+                alertDialog.show();
 
             }
         });
@@ -150,6 +201,12 @@ public class NewItemActivity extends AppCompatActivity {
                     return;
                 }
 
+                String hora = tvHora.getText().toString();
+                if (hora.isEmpty()){
+                    Toast.makeText(NewItemActivity.this,"É necessário selecionar uma Hora",Toast.LENGTH_LONG).show();
+                    return;
+                }
+
                 Intent i = new Intent();
                 i.putExtra("nome", name);
                 i.putExtra("qtd",qtd);
@@ -158,8 +215,8 @@ public class NewItemActivity extends AppCompatActivity {
                 i.putExtra("date", date);
                 i.putExtra("hora", hora);
                 i.putExtra("caixa", caixa);
+                i.putStringArrayListExtra("dias", diasSelecionados);
 
-                //i.put???? como adicionar a data e a hora aqui
                 setResult(Activity.RESULT_OK, i);
                 finish();
             }

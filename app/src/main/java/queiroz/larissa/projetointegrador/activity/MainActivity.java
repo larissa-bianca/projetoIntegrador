@@ -212,21 +212,23 @@ public class MainActivity extends AppCompatActivity {
                 Config.salvarCompartimento(MainActivity.this, , c );
                 preencherCaixaUi(caixa, c);
 
-                alarme(desc, hora);
+                alarme(desc, hora, dias);
 
             }
         }
     }
 
-    protected void alarme(String desc, String h){
+    protected void alarme(String nome, String h, String d){
         String[] horaEMin = h.split(":");
-        int hora = Integer.valueOf(horaEMin[0]);
-        int min =  Integer.valueOf(horaEMin[1]);
+
+        int hora = Integer.parseInt(horaEMin[0]);
+        int min =  Integer.parseInt(horaEMin[1]);
 
         Intent intent = new Intent(AlarmClock.ACTION_SET_ALARM)
-                .putExtra(AlarmClock.EXTRA_MESSAGE, desc)
+                .putExtra(AlarmClock.EXTRA_MESSAGE, nome)
                 .putExtra(AlarmClock.EXTRA_HOUR, hora)
                 .putExtra(AlarmClock.EXTRA_MINUTES, min);
+                .putExtra(AlarmClock.EXTRA_DAYS, dias);
         if (intent.resolveActivity(getPackageManager()) != null) {
             startActivity(intent);
         }
