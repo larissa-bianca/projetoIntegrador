@@ -11,7 +11,7 @@
         android:id="@+id/tbMain"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="?attr/colorPrimary"
+        android:background="@color/blue"
         android:minHeight="?attr/actionBarSize"
         android:theme="?attr/actionBarTheme" />
 
@@ -179,13 +179,17 @@
                         android:id="@+id/btnAbreCaixa3"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="Abrir Caixa 3" />
+                        android:backgroundTint="@color/blue"
+                        android:text="Abrir Caixa 3"
+                        android:textColor="@color/darkblue" />
 
                     <Button
                         android:id="@+id/btnEditar3"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="Editar" />
+                        android:backgroundTint="@color/blue"
+                        android:text="Editar"
+                        android:textColor="@color/darkblue" />
 
                 </LinearLayout>
 
@@ -343,14 +347,18 @@
                         android:id="@+id/btnAbreCaixa"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:backgroundTint="@color/blue"
                         android:text="Abrir Caixa 1"
-                        android:textAlignment="center" />
+                        android:textAlignment="center"
+                        android:textColor="@color/darkblue" />
 
                     <Button
                         android:id="@+id/btnEditar"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="Editar" />
+                        android:backgroundTint="@color/blue"
+                        android:text="Editar"
+                        android:textColor="@color/darkblue" />
 
                 </LinearLayout>
 
@@ -510,13 +518,17 @@
                         android:id="@+id/btnAbreCaixa2"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="Abrir Caixa 2" />
+                        android:backgroundTint="@color/blue"
+                        android:text="Abrir Caixa 2"
+                        android:textColor="@color/darkblue" />
 
                     <Button
                         android:id="@+id/btnEditar2"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="Editar" />
+                        android:backgroundTint="@color/blue"
+                        android:text="Editar"
+                        android:textColor="@color/darkblue" />
 
                 </LinearLayout>
 
