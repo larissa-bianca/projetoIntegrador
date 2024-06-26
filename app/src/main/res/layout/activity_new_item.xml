@@ -62,11 +62,11 @@
         android:id="@+id/tvHora"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
         android:layout_marginEnd="8dp"
         android:hint="hora"
-        app:layout_constraintBottom_toTopOf="@+id/checkbRecorrente"
+        android:textSize="16sp"
+        app:layout_constraintBottom_toTopOf="@+id/tvFreq"
         app:layout_constraintEnd_toStartOf="@+id/imgButtonTime"
         app:layout_constraintStart_toEndOf="@+id/tvHrAlarme"
         app:layout_constraintTop_toBottomOf="@+id/tvCompart" />
@@ -78,28 +78,17 @@
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
         android:text="Hora do Alarme: "
-        app:layout_constraintBottom_toTopOf="@+id/checkbRecorrente"
+        android:textSize="16sp"
+        app:layout_constraintBottom_toTopOf="@+id/textView2"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tvCompart" />
 
-    <CheckBox
-        android:id="@+id/checkbRecorrente"
-        android:layout_width="match_parent"
+    <EditText
+        android:id="@+id/etNome"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
-        android:layout_marginEnd="8dp"
-        android:checked="false"
-        android:text="Alarme Recorrente"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imgButtonTime" />
-
-    <EditText
-        android:id="@+id/etNome"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
         android:layout_marginEnd="8dp"
         android:ems="10"
         android:hint="nome"
@@ -113,6 +102,7 @@
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
         android:layout_marginEnd="8dp"
         android:layout_marginBottom="8dp"
         android:ems="10"
@@ -131,6 +121,7 @@
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
         android:text="Data de Vencimento:"
+        android:textSize="16sp"
         app:layout_constraintBottom_toTopOf="@+id/etDesc"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/etQtd" />
@@ -141,6 +132,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
         android:hint="data"
+        android:textSize="16sp"
         app:layout_constraintBottom_toTopOf="@+id/etDesc"
         app:layout_constraintEnd_toStartOf="@+id/imgBtnData"
         app:layout_constraintStart_toEndOf="@+id/tvDataVencim"
@@ -161,20 +153,22 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="16dp"
         android:text="Selecionar Frequência"
+        android:textSize="16sp"
+        app:layout_constraintBottom_toTopOf="@+id/etNome"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/checkbRecorrente" />
+        app:layout_constraintTop_toBottomOf="@+id/imgButtonTime" />
 
     <TextView
         android:id="@+id/tvFreq"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
         android:hint="frequência"
+        android:textSize="16sp"
+        app:layout_constraintBottom_toTopOf="@+id/etNome"
         app:layout_constraintEnd_toStartOf="@+id/imgBtnFreq"
         app:layout_constraintStart_toEndOf="@+id/textView2"
-        app:layout_constraintTop_toBottomOf="@+id/checkbRecorrente" />
+        app:layout_constraintTop_toBottomOf="@+id/imgButtonTime" />
 
     <ImageButton
         android:id="@+id/imgBtnFreq"
@@ -183,7 +177,7 @@
         android:layout_marginTop="8dp"
         android:layout_marginEnd="8dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/checkbRecorrente"
+        app:layout_constraintTop_toBottomOf="@+id/imgButtonTime"
         app:srcCompat="@drawable/baseline_add_24" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
