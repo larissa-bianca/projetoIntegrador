@@ -133,7 +133,7 @@ public class MainActivity extends AppCompatActivity {
         });
 
         Button btnAbreCaixa2 = findViewById(R.id.btnAbreCaixa2);
-        btnAbreCaixa.setOnClickListener(new View.OnClickListener() {
+        btnAbreCaixa2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 operarCaixa(2, btnAbreCaixa2);
@@ -141,7 +141,7 @@ public class MainActivity extends AppCompatActivity {
         });
 
         Button btnAbreCaixa3 = findViewById(R.id.btnAbreCaixa3);
-        btnAbreCaixa.setOnClickListener(new View.OnClickListener() {
+        btnAbreCaixa3.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 operarCaixa(3, btnAbreCaixa3);

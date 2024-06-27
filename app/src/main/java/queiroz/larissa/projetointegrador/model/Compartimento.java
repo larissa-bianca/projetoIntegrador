@@ -18,6 +18,11 @@ public class Compartimento {
    public int getMinutos() {
       String[] horaEMin = this.hora.split(":");
       int min = Integer.parseInt(horaEMin[1]);
+
+      if (min == 0){
+         min = 00;
+      }
+
       return min;
    }
 
