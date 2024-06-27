@@ -42,7 +42,7 @@ public class MainActivity extends AppCompatActivity {
 
     static int RESULT_REQUEST_PERMISSION = 2;
 
-    boolean caixaAberta = false;
+    boolean[] caixasAbertas = new boolean[]{false, false, false};
     static int NEW_ITEM_REQUEST =1;
     MainActivityViewModel vm;
 
@@ -52,8 +52,7 @@ public class MainActivity extends AppCompatActivity {
     TextView tvData;
     TextView tvDesc;
     TextView tvFreq;
-
-    Compartimento c1, c2, c3;
+    Compartimento[] caixas = new Compartimento[]{null, null, null};
 
     private AlarmManager alarmMgr;
     private PendingIntent alarmIntent;
@@ -76,19 +75,19 @@ public class MainActivity extends AppCompatActivity {
 
 
         try {
-            c1 = Config.pegarCompartimento(MainActivity.this,1);
-            if(c1 != null) {
-                preencherCaixaUi(1, c1);
+            caixas[0] = Config.pegarCompartimento(MainActivity.this,1);
+            if(caixas[0] != null) {
+                preencherCaixaUi(1, caixas[0]);
             }
 
-            c2 = Config.pegarCompartimento(MainActivity.this,2);
-            if(c2 != null) {
-                preencherCaixaUi(2, c2);
+            caixas[1] = Config.pegarCompartimento(MainActivity.this,2);
+            if(caixas[1] != null) {
+                preencherCaixaUi(2, caixas[1]);
             }
 
-            c3 = Config.pegarCompartimento(MainActivity.this,3);
-            if(c3 != null) {
-                preencherCaixaUi(3, c3);
+            caixas[2] = Config.pegarCompartimento(MainActivity.this,3);
+            if(caixas[2] != null) {
+                preencherCaixaUi(3, caixas[2]);
             }
         } catch (JSONException e) {
             e.printStackTrace();
@@ -129,56 +128,23 @@ public class MainActivity extends AppCompatActivity {
         btnAbreCaixa.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                // Quando o botão é clicado, ele é desabilitado. Isso garante que o usuário não
-                // será capaz de clicar várias vezes no botão
-                v.setEnabled(false);
+                operarCaixa(1, btnAbreCaixa);
+            }
+        });
 
-                // guarda uma promessa de resposta por parte do ESP32. Assim que o ESP32 responder,
-                // a variável abaixo guarda o resultado da ação: um booleano, onde true indica que
-                // o ESP32 conseguiu realizar a ação e false caso contrário
-                LiveData<Boolean> resLD;
+        Button btnAbreCaixa2 = findViewById(R.id.btnAbreCaixa2);
+        btnAbreCaixa.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                operarCaixa(2, btnAbreCaixa2);
+            }
+        });
 
-                // Se o estado atual do botão está ligado, enviamos uma requisição ao ESP32 para
-                // desligar. Caso contrário, enviamos uma requisição ao ESP32 para ligar
-                if(caixaAberta) {
-                    resLD = vm.fecharCaixa(1);
-                }
-                else {
-                    resLD = vm.abrirCaixa(1);
-                }
-
-                // depois de enviar a requisição ao ESP32, nós observamos a variável que resLD.
-                // Assim que o ESP32 responder, o método onChanged abaixo é chamado e entrega a
-                // resposta
-                resLD.observe(MainActivity.this, new Observer<Boolean>() {
-                    @Override
-                    public void onChanged(Boolean aBoolean) {
-                        // Verifica se a caixa está aberta
-                        if (caixaAberta) {
-                            // Se a caixa estava aberta e a ação do ESP32 foi bem-sucedida
-                            if (aBoolean) {
-                                // Atualiza o estado da caixa para fechada
-                                caixaAberta = false;
-                                // Atualiza o texto do botão para "Fechar Caixa"
-                                btnAbreCaixa.setText("Fechar Caixa");
-                                c1.qtd = Integer.toString(Integer.parseInt(c1.qtd) - 1);
-
-                            }
-                        } else {
-                            // Se a caixa estava fechada e a ação do ESP32 foi bem-sucedida
-                            if (aBoolean) {
-                                // Atualiza o estado da caixa para aberta
-                                caixaAberta = true;
-                                // Atualiza o texto do botão para "Abrir Caixa"
-                                btnAbreCaixa.setText("Abrir Caixa");
-                            }
-                        }
-
-                        // Reabilita o botão para permitir novas interações do usuário
-                        v.setEnabled(true);
-                    }
-
-                });
+        Button btnAbreCaixa3 = findViewById(R.id.btnAbreCaixa3);
+        btnAbreCaixa.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                operarCaixa(3, btnAbreCaixa3);
             }
         });
     }
@@ -242,6 +208,63 @@ public class MainActivity extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
+    void operarCaixa(int caixa, Button v){
+        // Quando o botão é clicado, ele é desabilitado. Isso garante que o usuário não
+        // será capaz de clicar várias vezes no botão
+        v.setEnabled(false);
+
+        // guarda uma promessa de resposta por parte do ESP32. Assim que o ESP32 responder,
+        // a variável abaixo guarda o resultado da ação: um booleano, onde true indica que
+        // o ESP32 conseguiu realizar a ação e false caso contrário
+        LiveData<Boolean> resLD;
+
+        // Se o estado atual do botão está ligado, enviamos uma requisição ao ESP32 para
+        // desligar. Caso contrário, enviamos uma requisição ao ESP32 para ligar
+        if(caixasAbertas[caixa-1]) {
+            resLD = vm.fecharCaixa(caixa);
+        }
+        else {
+            resLD = vm.abrirCaixa(caixa);
+        }
+
+        // depois de enviar a requisição ao ESP32, nós observamos a variável que resLD.
+        // Assim que o ESP32 responder, o método onChanged abaixo é chamado e entrega a
+        // resposta
+        resLD.observe(MainActivity.this, new Observer<Boolean>() {
+            @Override
+            public void onChanged(Boolean aBoolean) {
+                // Verifica se a caixa está aberta
+                if (caixasAbertas[caixa - 1]) {
+                    // Se a caixa estava aberta e a ação do ESP32 foi bem-sucedida
+                    if (aBoolean) {
+                        // Atualiza o estado da caixa para fechada
+                        caixasAbertas[caixa - 1] = false;
+                        // Atualiza o texto do botão para "Fechar Caixa"
+                        v.setText("Fechar Caixa");
+                        caixas[caixa-1].qtd = Integer.toString(Integer.parseInt(caixas[caixa-1].qtd) - 1);
+                        try {
+                            Config.salvarCompartimento(MainActivity.this, caixa, caixas[caixa-1]);
+                        } catch (JSONException e) {
+                            throw new RuntimeException(e);
+                        }
+
+                    }
+                } else {
+                    // Se a caixa estava fechada e a ação do ESP32 foi bem-sucedida
+                    if (aBoolean) {
+                        // Atualiza o estado da caixa para aberta
+                        caixasAbertas[caixa - 1] = true;
+                        // Atualiza o texto do botão para "Abrir Caixa"
+                        v.setText("Abrir Caixa");
+                    }
+                }
+
+                // Reabilita o botão para permitir novas interações do usuário
+                v.setEnabled(true);
+            }
+        });
+    }
+
 
 
     @Override
@@ -294,7 +317,7 @@ public class MainActivity extends AppCompatActivity {
         startActivityForResult(i,NEW_ITEM_REQUEST);
     }
 
-    void preencherCaixaUi( int caixa, Compartimento c) {
+    void preencherCaixaUi(int caixa, Compartimento c) {
         if(caixa == 1){
             tvName = findViewById(R.id.tvNomRem1);
             tvHoraAlarme = findViewById(R.id.tvHoraAlarme);
@@ -303,7 +326,7 @@ public class MainActivity extends AppCompatActivity {
             tvDesc = findViewById(R.id.tvDesc);
             tvFreq = findViewById(R.id.tvFreq1);
         }
-        else if (caixa==2){
+        else if (caixa == 2){
             tvName = findViewById(R.id.tvNomRem2);
             tvHoraAlarme = findViewById(R.id.tvHrAlarm2);
             tvQtd = findViewById(R.id.tvQtd2);

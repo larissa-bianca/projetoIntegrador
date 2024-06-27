@@ -20,4 +20,6 @@ public class Compartimento {
       int min = Integer.parseInt(horaEMin[1]);
       return min;
    }
+
+   //public int getQtdInt(){}
 }
