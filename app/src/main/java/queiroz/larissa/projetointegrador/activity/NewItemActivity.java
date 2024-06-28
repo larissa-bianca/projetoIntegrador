@@ -27,6 +27,8 @@ import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
+import org.json.JSONException;
+
 import java.sql.Time;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -54,7 +56,32 @@ public class NewItemActivity extends AppCompatActivity {
         Intent i = getIntent();
         int caixa = i.getIntExtra("caixa", 0);
 
+        try {
+            Compartimento c = Config.pegarCompartimento(NewItemActivity.this,caixa);
 
+            if(c != null){
+                TextView tvHora = findViewById(R.id.tvHora);
+                tvHora.setText(c.hora);
+
+                TextView tvFreq = findViewById(R.id.tvFreq);
+                tvFreq.setText(c.diasPT);
+
+                EditText etNome = findViewById(R.id.etNome);
+                etNome.setText(c.nome);
+
+                EditText etQtd = findViewById(R.id.etQtd);
+                etQtd.setText(c.qtd);
+
+                TextView tvDate = findViewById(R.id.tvDate);
+                tvDate.setText(c.data);
+
+                EditText etDesc = findViewById(R.id.etDesc);
+                etDesc.setText(c.desc);
+            }
+
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
 
 
         TextView tvHora = findViewById(R.id.tvHora);
