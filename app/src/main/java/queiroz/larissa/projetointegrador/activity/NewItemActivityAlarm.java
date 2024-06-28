@@ -1,6 +1,9 @@
 package queiroz.larissa.projetointegrador.activity;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
@@ -21,6 +24,15 @@ public class NewItemActivityAlarm extends AppCompatActivity {
             Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
+        });
+
+        Button btnDesligarAlarme = findViewById(R.id.btnDesligarAlarme);
+        btnDesligarAlarme.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(NewItemActivityAlarm.this,
+                        MainActivity.class);
+            }
         });
     }
 }
