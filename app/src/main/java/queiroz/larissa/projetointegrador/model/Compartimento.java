@@ -22,8 +22,19 @@ public class Compartimento {
       if (min == 0){
          min = 00;
       }
-
       return min;
+   }
+
+   public int getQtd(){
+      int qtdInt;
+      qtdInt = Integer.parseInt(this.qtd);
+      return qtdInt;
+   }
+
+   public void diminuiQtd(){
+       int novaQtd = this.getQtd() - 1;
+       String qtdStr = String.valueOf(novaQtd);
+       this.qtd = qtdStr;
    }
 
    //public int getQtdInt(){}

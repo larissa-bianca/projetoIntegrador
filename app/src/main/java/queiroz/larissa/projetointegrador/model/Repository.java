@@ -43,7 +43,7 @@ public class Repository {
             httpRequest.finish();
 
             // Se result igual a 1, significa que o usuário foi registrado com sucesso.
-            if(result.equals("1")) {
+            if(result.equals("1\n\n")) {
                 return true;
             }
         } catch (IOException e) {
@@ -74,7 +74,7 @@ public class Repository {
             httpRequest.finish();
 
             // Se result igual a 1, significa que o usuário foi registrado com sucesso.
-            if(result.equals("1")) {
+            if(result.equals("1\n\n")) {
                 return true;
             }
         } catch (IOException e) {
@@ -105,7 +105,7 @@ public class Repository {
             httpRequest.finish();
 
             // Se result igual a 1, significa que o usuário foi registrado com sucesso.
-            if(result.equals("1")) {
+            if(result.equals("1\n\n")) {
                 return true;
             }
         } catch (IOException e) {
@@ -136,7 +136,7 @@ public class Repository {
             httpRequest.finish();
 
             // Se result igual a 1, significa que o usuário foi registrado com sucesso.
-            if(result.equals("1")) {
+            if(result.equals("1\n\n")) {
                 return true;
             }
         } catch (IOException e) {

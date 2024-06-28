@@ -240,8 +240,8 @@ public class MainActivity extends AppCompatActivity {
                         // Atualiza o estado da caixa para fechada
                         caixasAbertas[caixa - 1] = false;
                         // Atualiza o texto do botão para "Fechar Caixa"
-                        v.setText("Fechar Caixa");
-                        caixas[caixa-1].qtd = Integer.toString(Integer.parseInt(caixas[caixa-1].qtd) - 1);
+                        v.setText("Abrir Caixa");
+                        caixas[caixa-1].diminuiQtd();
                         try {
                             Config.salvarCompartimento(MainActivity.this, caixa, caixas[caixa-1]);
                         } catch (JSONException e) {
@@ -255,7 +255,7 @@ public class MainActivity extends AppCompatActivity {
                         // Atualiza o estado da caixa para aberta
                         caixasAbertas[caixa - 1] = true;
                         // Atualiza o texto do botão para "Abrir Caixa"
-                        v.setText("Abrir Caixa");
+                        v.setText("Fechar Caixa");
                     }
                 }
 
