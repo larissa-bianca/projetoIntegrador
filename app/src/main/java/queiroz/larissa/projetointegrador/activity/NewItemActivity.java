@@ -42,6 +42,9 @@ public class NewItemActivity extends AppCompatActivity {
     private ArrayList<String> diasSelecionados = new ArrayList<>(); // Declarar como variável de instância
     private ArrayList<String> days = new ArrayList<>();
 
+    private int hour;
+    private int minute;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -95,8 +98,8 @@ public class NewItemActivity extends AppCompatActivity {
                 final Calendar c = Calendar.getInstance();
 
                 // on below line we are getting our hour, minute.
-                int hour = c.get(Calendar.HOUR_OF_DAY);
-                int minute = c.get(Calendar.MINUTE);
+                hour = c.get(Calendar.HOUR_OF_DAY);
+                minute = c.get(Calendar.MINUTE);
 
                 // on below line we are initializing our Time Picker Dialog
                 TimePickerDialog timePickerDialog = new TimePickerDialog(NewItemActivity.this,
@@ -149,11 +152,11 @@ public class NewItemActivity extends AppCompatActivity {
         ImageButton imgBtnFreq = findViewById(R.id.imgBtnFreq);
 
         final String[] diasSemana = {
-                "Dom", "Seg", "Ter", "Qua", "Qui", "Sex", "Sáb"
+                "TESTE", "A cada 1 hora", "A cada 3 horas", "A cada 6 horas", "A cada 12 horas", "A cada 18 horas", "A cada 24 horas", "A cada 36 horas", "A cada 48 horas", "A cada 72 horas"
         };
-        final String[] daysWeek = {
-                "SUNDAY", "MONDAY", "TUESDAY", "WEDNESDAY", "THURSDAY", "FRIDAY", "SATURDAY"
-        };
+        //final String[] daysWeek = {
+        //        "SUNDAY", "MONDAY", "TUESDAY", "WEDNESDAY", "THURSDAY", "FRIDAY", "SATURDAY"
+        //};
 
         final boolean[] checados = new boolean[diasSemana.length];
         final List<String> selecionados = Arrays.asList(diasSemana);
@@ -164,35 +167,26 @@ public class NewItemActivity extends AppCompatActivity {
                 tvFreq.setText(null);
 
                 AlertDialog.Builder builder = new AlertDialog.Builder(NewItemActivity.this);
-                builder.setTitle("Escolha os dias");
+                builder.setTitle("Escolha a frequência");
 
-                builder.setMultiChoiceItems(diasSemana, checados, (dialog, which, isChecked) -> {
-                    checados[which] = isChecked;
-                    String currentItem = selecionados.get(which);
-                });
+                builder.setSingleChoiceItems(diasSemana, 0, (dialog, which) -> {});
 
                 builder.setCancelable(false);
 
-                builder.setPositiveButton("Feito", (dialog, which) -> {
-                    diasSelecionados.clear();
+                builder.setPositiveButton("FEITO", (dialog, which) -> {
+                    //diasSelecionados.clear();
                     //List<String> diasSelecionados = new ArrayList<>();
-                    for (int i = 0; i < checados.length; i++) {
+                    /*for (int i = 0; i < checados.length; i++) {
                         if (checados[i]) {
                             diasSelecionados.add(diasSemana[i]);
                             days.add(daysWeek[i]);
                         }
                     }
-                    tvFreq.setText(TextUtils.join(", ", diasSelecionados));
+                    tvFreq.setText(TextUtils.join(", ", diasSelecionados));*/
 
                 });
 
                 builder.setNegativeButton("CANCELAR", (dialog, which) -> {});
-
-                builder.setNeutralButton("LIMPAR", (dialog, which) -> {
-                    Arrays.fill(checados, false);
-                    diasSelecionados.clear(); // Limpa a lista de dias selecionados
-                    tvFreq.setText("");  // Limpa o TextView
-                });
 
                 builder.create();
                 AlertDialog alertDialog = builder.create();
