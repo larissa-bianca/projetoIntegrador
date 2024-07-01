@@ -6,8 +6,8 @@ public class Compartimento {
    public String qtd;
    public String desc;
    public String data;
-   public String[] dias;
-   public String diasPT;
+   public String freq;
+   public String freqInt;
 
    public int getHoras() {
       String[] horaEMin = this.hora.split(":");
@@ -31,11 +31,24 @@ public class Compartimento {
       return qtdInt;
    }
 
+   public int getFreqInt(){
+      int freqInt;
+      freqInt = Integer.parseInt(this.freqInt);
+      return freqInt;
+   }
+
    public void diminuiQtd(){
        int novaQtd = this.getQtd() - 1;
        String qtdStr = String.valueOf(novaQtd);
        this.qtd = qtdStr;
    }
 
+   public long getFreqMilli(){
+      long freqMilli;
+
+      freqMilli = this.getFreqInt() * (1000 * 60 * 60);
+
+      return freqMilli;
+   }
    //public int getQtdInt(){}
 }

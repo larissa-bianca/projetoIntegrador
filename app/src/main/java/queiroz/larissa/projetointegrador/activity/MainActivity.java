@@ -27,10 +27,13 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.Manifest;
+import android.widget.TimePicker;
+import android.widget.Toast;
 
 import org.json.JSONException;
 
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.List;
 
 import queiroz.larissa.projetointegrador.R;
@@ -54,8 +57,9 @@ public class MainActivity extends AppCompatActivity {
     TextView tvFreq;
     Compartimento[] caixas = new Compartimento[]{null, null, null};
 
-    private AlarmManager alarmMgr;
-    private PendingIntent alarmIntent;
+    private TimePicker alarmTimePicker;
+    private PendingIntent pendingIntent;
+    private AlarmManager alarmManager;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -279,8 +283,8 @@ public class MainActivity extends AppCompatActivity {
                 c.nome = data.getStringExtra("nome");
                 c.qtd = data.getStringExtra("qtd");
                 c.hora = data.getStringExtra("hora");
-                c.dias = data.getStringArrayExtra("days");
-                c.diasPT = data.getStringExtra("diasPT");
+                c.freq = data.getStringExtra("freq");
+                c.freqInt = data.getStringExtra("freqNum");
 
                 int caixa = data.getIntExtra("caixa", 0);
 
@@ -301,14 +305,29 @@ public class MainActivity extends AppCompatActivity {
         int hora = c.getHoras();
         int min =  c.getMinutos();
 
-        Intent intent = new Intent(AlarmClock.ACTION_SET_ALARM)
-                .putExtra(AlarmClock.EXTRA_MESSAGE, c.nome)
-                .putExtra(AlarmClock.EXTRA_HOUR, hora)
-                .putExtra(AlarmClock.EXTRA_MINUTES, min)
-                .putExtra(AlarmClock.EXTRA_DAYS, c.dias);
-        if (intent.resolveActivity(getPackageManager()) != null) {
-            startActivity(intent);
+        long time;
+
+        alarmManager = (AlarmManager) getSystemService(ALARM_SERVICE);
+        Calendar calendar = Calendar.getInstance();
+
+        Toast.makeText(MainActivity.this, "ALARME LIGADO", Toast.LENGTH_SHORT).show();
+
+        calendar.set(Calendar.HOUR_OF_DAY, hora);
+        calendar.set(Calendar.MINUTE, min);
+
+        Intent intent = new Intent(this, AlarmReceiver.class);
+        pendingIntent = PendingIntent.getBroadcast(this, 0, intent, 0);
+
+        time =  (calendar.getTimeInMillis() - (calendar.getTimeInMillis() % 60000));
+        if (System.currentTimeMillis() > time){
+            if (Calendar.AM_PM == 0)
+                time = time + (1000 * 60 * 60 * 12);
+            else
+                time = time + (1000 * 60 * 60 * 24);
         }
+
+        alarmManager.setRepeating(AlarmManager.RTC_WAKEUP, time, c.getFreqMilli(), pendingIntent);
+
     }
 
     void navegarEditarCaixa( int caixa) {
@@ -354,8 +373,8 @@ public class MainActivity extends AppCompatActivity {
         tvData.setText(date);
         String hora = c.hora;
         tvHoraAlarme.setText(hora);
-        String diasSelecionados = c.diasPT;
-        tvFreq.setText(diasSelecionados);
+        String freq = c.freq;
+        tvFreq.setText(freq);
 
     }
 

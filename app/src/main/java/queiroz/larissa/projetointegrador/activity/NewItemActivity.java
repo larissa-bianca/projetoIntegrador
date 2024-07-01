@@ -2,14 +2,10 @@ package queiroz.larissa.projetointegrador.activity;
 
 import android.app.Activity;
 import android.app.DatePickerDialog;
-import android.app.Dialog;
-import android.app.DialogFragment;
 import android.app.TimePickerDialog;
 import android.content.Intent;
 import android.icu.util.Calendar;
 import android.os.Bundle;
-import android.text.TextUtils;
-import android.text.format.DateFormat;
 import android.view.View;
 import android.widget.Button;
 import android.widget.DatePicker;
@@ -20,7 +16,6 @@ import android.widget.TimePicker;
 import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
-import androidx.annotation.ChecksSdkIntAtLeast;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.graphics.Insets;
@@ -29,7 +24,6 @@ import androidx.core.view.WindowInsetsCompat;
 
 import org.json.JSONException;
 
-import java.sql.Time;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -39,13 +33,12 @@ import queiroz.larissa.projetointegrador.model.Compartimento;
 import queiroz.larissa.projetointegrador.util.Config;
 
 public class NewItemActivity extends AppCompatActivity {
-    private ArrayList<String> diasSelecionados = new ArrayList<>(); // Declarar como variável de instância
-    private ArrayList<String> days = new ArrayList<>();
-
     private int itemSelecionado;
 
     private int hour;
     private int minute;
+
+    private String freqNum;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -69,7 +62,7 @@ public class NewItemActivity extends AppCompatActivity {
                 tvHora.setText(c.hora);
 
                 TextView tvFreq = findViewById(R.id.tvFreq);
-                tvFreq.setText(c.diasPT);
+                tvFreq.setText(c.freq);
 
                 EditText etNome = findViewById(R.id.etNome);
                 etNome.setText(c.nome);
@@ -153,13 +146,15 @@ public class NewItemActivity extends AppCompatActivity {
         TextView tvFreq = findViewById(R.id.tvFreq);
         ImageButton imgBtnFreq = findViewById(R.id.imgBtnFreq);
 
-        final String[] selecaoFreq = {"TESTE", "A cada 1 hora", "A cada 3 horas", "A cada 6 horas", "A cada 12 horas", "A cada 18 horas", "A cada 24 horas", "A cada 36 horas", "A cada 48 horas", "A cada 72 horas"};
-        //final String[] daysWeek = {
-        //        "SUNDAY", "MONDAY", "TUESDAY", "WEDNESDAY", "THURSDAY", "FRIDAY", "SATURDAY"
-        //};
+        final String[] selecaoFreq = {
+                "TESTE", "A cada 1 hora", "A cada 3 horas", "A cada 6 horas", "A cada 12 horas", "A cada 18 horas", "A cada 24 horas", "A cada 36 horas", "A cada 48 horas", "A cada 72 horas"
+        };
+
+        final String[] selecaoFreqInt = {
+                "0.03", "1", "3", "6", "12", "18", "24", "36", "48", "72"
+        };
 
         final boolean[] checados = new boolean[selecaoFreq.length];
-        final List<String> selecionados = Arrays.asList(selecaoFreq);
 
         imgBtnFreq.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -186,8 +181,10 @@ public class NewItemActivity extends AppCompatActivity {
                 builder.setNegativeButton("CANCELAR", (dialog, which) -> {});
                 builder.setSingleChoiceItems(selecaoFreq, 0, (dialog, which) -> {
                     itemSelecionado = which;
+                    freqNum = selecaoFreqInt[itemSelecionado];
                     tvFreq.setText(selecaoFreq[itemSelecionado]);
                 });
+
 
                 builder.create();
                 AlertDialog alertDialog = builder.create();
@@ -230,8 +227,8 @@ public class NewItemActivity extends AppCompatActivity {
                     Toast.makeText(NewItemActivity.this,"É necessário selecionar uma Hora",Toast.LENGTH_LONG).show();
                     return;
                 }
-                String diasPT = tvFreq.getText().toString();
-                if (diasPT.isEmpty()){
+                String frequencia = tvFreq.getText().toString();
+                if (frequencia.isEmpty()){
                     Toast.makeText(NewItemActivity.this,"É necessário selecionar uma Frequência",Toast.LENGTH_LONG).show();
                     return;
                 }
@@ -244,8 +241,8 @@ public class NewItemActivity extends AppCompatActivity {
                 i.putExtra("date", date);
                 i.putExtra("hora", hora);
                 i.putExtra("caixa", caixa);
-                i.putExtra("diasPT", diasPT);
-                i.putStringArrayListExtra("dias", days);
+                i.putExtra("freq", frequencia);
+                i.putExtra("freqNum", freqNum);
 
 
                 setResult(Activity.RESULT_OK, i);

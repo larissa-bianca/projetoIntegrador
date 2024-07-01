@@ -44,7 +44,7 @@ public class Config {
         obj.put("data", compartimento.data);
         obj.put("qtd", compartimento.qtd);
         obj.put("desc", compartimento.desc);
-        obj.put("dias", compartimento.diasPT);
+        obj.put("freq", compartimento.freq);
 
 
         SharedPreferences mPrefs = context.getSharedPreferences("configs", 0);
@@ -71,7 +71,7 @@ public class Config {
         c.data = obj.getString("data");
         c.qtd = obj.getString("qtd");
         c.desc = obj.getString("desc");
-        c.diasPT = obj.getString("dias");
+        c.freq = obj.getString("freq");
         return c;
     }
 }
