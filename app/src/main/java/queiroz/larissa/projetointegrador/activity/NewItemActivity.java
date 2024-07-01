@@ -42,6 +42,8 @@ public class NewItemActivity extends AppCompatActivity {
     private ArrayList<String> diasSelecionados = new ArrayList<>(); // Declarar como variável de instância
     private ArrayList<String> days = new ArrayList<>();
 
+    private int itemSelecionado;
+
     private int hour;
     private int minute;
 
@@ -151,15 +153,13 @@ public class NewItemActivity extends AppCompatActivity {
         TextView tvFreq = findViewById(R.id.tvFreq);
         ImageButton imgBtnFreq = findViewById(R.id.imgBtnFreq);
 
-        final String[] diasSemana = {
-                "TESTE", "A cada 1 hora", "A cada 3 horas", "A cada 6 horas", "A cada 12 horas", "A cada 18 horas", "A cada 24 horas", "A cada 36 horas", "A cada 48 horas", "A cada 72 horas"
-        };
+        final String[] selecaoFreq = {"TESTE", "A cada 1 hora", "A cada 3 horas", "A cada 6 horas", "A cada 12 horas", "A cada 18 horas", "A cada 24 horas", "A cada 36 horas", "A cada 48 horas", "A cada 72 horas"};
         //final String[] daysWeek = {
         //        "SUNDAY", "MONDAY", "TUESDAY", "WEDNESDAY", "THURSDAY", "FRIDAY", "SATURDAY"
         //};
 
-        final boolean[] checados = new boolean[diasSemana.length];
-        final List<String> selecionados = Arrays.asList(diasSemana);
+        final boolean[] checados = new boolean[selecaoFreq.length];
+        final List<String> selecionados = Arrays.asList(selecaoFreq);
 
         imgBtnFreq.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -169,8 +169,6 @@ public class NewItemActivity extends AppCompatActivity {
                 AlertDialog.Builder builder = new AlertDialog.Builder(NewItemActivity.this);
                 builder.setTitle("Escolha a frequência");
 
-                builder.setSingleChoiceItems(diasSemana, 0, (dialog, which) -> {});
-
                 builder.setCancelable(false);
 
                 builder.setPositiveButton("FEITO", (dialog, which) -> {
@@ -178,21 +176,25 @@ public class NewItemActivity extends AppCompatActivity {
                     //List<String> diasSelecionados = new ArrayList<>();
                     /*for (int i = 0; i < checados.length; i++) {
                         if (checados[i]) {
-                            diasSelecionados.add(diasSemana[i]);
+                            diasSelecionados.add(selecaoFreq[i]);
                             days.add(daysWeek[i]);
                         }
                     }
                     tvFreq.setText(TextUtils.join(", ", diasSelecionados));*/
-
                 });
 
                 builder.setNegativeButton("CANCELAR", (dialog, which) -> {});
+                builder.setSingleChoiceItems(selecaoFreq, 0, (dialog, which) -> {
+                    itemSelecionado = which;
+                    tvFreq.setText(selecaoFreq[itemSelecionado]);
+                });
 
                 builder.create();
                 AlertDialog alertDialog = builder.create();
                 alertDialog.show();
 
             }
+
         });
 
 

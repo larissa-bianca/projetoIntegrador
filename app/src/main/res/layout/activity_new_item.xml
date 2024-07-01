@@ -169,7 +169,7 @@
         android:id="@+id/tvFreq"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:hint="Dias"
+        android:hint="Frequência"
         android:textSize="16sp"
         app:layout_constraintBottom_toTopOf="@+id/etNome"
         app:layout_constraintEnd_toStartOf="@+id/imgBtnFreq"
