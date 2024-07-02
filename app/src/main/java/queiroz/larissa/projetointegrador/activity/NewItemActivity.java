@@ -154,7 +154,6 @@ public class NewItemActivity extends AppCompatActivity {
                 "0.03", "1", "3", "6", "12", "18", "24", "36", "48", "72"
         };
 
-        final boolean[] checados = new boolean[selecaoFreq.length];
 
         imgBtnFreq.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -164,21 +163,13 @@ public class NewItemActivity extends AppCompatActivity {
                 AlertDialog.Builder builder = new AlertDialog.Builder(NewItemActivity.this);
                 builder.setTitle("Escolha a frequência");
 
-                builder.setCancelable(false);
 
                 builder.setPositiveButton("FEITO", (dialog, which) -> {
-                    //diasSelecionados.clear();
-                    //List<String> diasSelecionados = new ArrayList<>();
-                    /*for (int i = 0; i < checados.length; i++) {
-                        if (checados[i]) {
-                            diasSelecionados.add(selecaoFreq[i]);
-                            days.add(daysWeek[i]);
-                        }
-                    }
-                    tvFreq.setText(TextUtils.join(", ", diasSelecionados));*/
                 });
 
-                builder.setNegativeButton("CANCELAR", (dialog, which) -> {});
+                builder.setNegativeButton("CANCELAR", (dialog, which) -> {
+                });
+
                 builder.setSingleChoiceItems(selecaoFreq, 0, (dialog, which) -> {
                     itemSelecionado = which;
                     freqNum = selecaoFreqInt[itemSelecionado];
