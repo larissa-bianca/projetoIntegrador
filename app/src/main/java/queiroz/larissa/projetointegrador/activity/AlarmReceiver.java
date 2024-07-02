@@ -10,9 +10,12 @@ import android.media.RingtoneManager;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Vibrator;
+import android.widget.EditText;
 import android.widget.Toast;
 
 import androidx.annotation.RequiresApi;
+
+import queiroz.larissa.projetointegrador.R;
 
 public class AlarmReceiver extends BroadcastReceiver {
 
@@ -26,11 +29,10 @@ public class AlarmReceiver extends BroadcastReceiver {
         Vibrator vibrator = (Vibrator) context.getSystemService(Context.VIBRATOR_SERVICE);
         vibrator.vibrate(4000);
 
-        Toast.makeText(context, "Alarm! Wake up! Wake up!", Toast.LENGTH_LONG).show();
+        Toast.makeText(context, "Hora de tomar o remédio!", Toast.LENGTH_LONG).show();
 
         //Intent i = new Intent(context, NewItemActivityAlarm.class);
         //startActivity(context, i, null);
-
 
     }
 }
