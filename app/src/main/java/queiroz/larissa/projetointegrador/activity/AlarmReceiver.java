@@ -13,24 +13,29 @@ import android.os.Vibrator;
 import android.widget.Toast;
 
 import androidx.annotation.RequiresApi;
+import androidx.lifecycle.ViewModelProvider;
+import androidx.lifecycle.ViewModelStoreOwner;
+
+import queiroz.larissa.projetointegrador.model.MainActivityViewModel;
+import queiroz.larissa.projetointegrador.model.Repository;
 
 public class AlarmReceiver extends BroadcastReceiver {
 
     @RequiresApi(api = Build.VERSION_CODES.Q)
     @Override
-
+    MainActivityViewModel vm;
     // implement onReceive() method
     public void onReceive(Context context, Intent intent) {
-
+        String nomeRemedio;
         // we will use vibrator first
         Vibrator vibrator = (Vibrator) context.getSystemService(Context.VIBRATOR_SERVICE);
         vibrator.vibrate(4000);
 
-        Toast.makeText(context, "Alarm! Wake up! Wake up!", Toast.LENGTH_LONG).show();
+        nomeRemedio = data.getStringExtra("nomeRemedio");
+        Toast.makeText(context, "Hora de tomar" + nomeRemedio , Toast.LENGTH_LONG).show();
 
         //Intent i = new Intent(context, NewItemActivityAlarm.class);
         //startActivity(context, i, null);
-
 
     }
 }

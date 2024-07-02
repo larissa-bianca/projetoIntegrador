@@ -316,7 +316,9 @@ public class MainActivity extends AppCompatActivity {
         calendar.set(Calendar.MILLISECOND, 0);
 
         Intent intent = new Intent(MainActivity.this, AlarmReceiver.class);
+        intent.putExtra("nomeRemedio" ,c.nome);
         pendingIntent = PendingIntent.getBroadcast(MainActivity.this, 0, intent, 0);
+
 
         time =  calendar.getTimeInMillis();
         if (System.currentTimeMillis() > time){
