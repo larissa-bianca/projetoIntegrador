@@ -313,10 +313,11 @@ public class MainActivity extends AppCompatActivity {
         calendar.set(Calendar.MINUTE, min);
 
         Intent intent = new Intent(this, AlarmReceiver.class);
-        pendingIntent = PendingIntent.getBroadcast(this, 0, intent, 0);
+        pendingIntent = PendingIntent.getBroadcast(this, 0, intent, PendingIntent.FLAG_IMMUTABLE);
 
         time =  (calendar.getTimeInMillis() - (calendar.getTimeInMillis() % 60000));
         if (System.currentTimeMillis() > time){
+
             if (Calendar.AM_PM == 0)
                 time = time + (1000 * 60 * 60 * 12);
             else
