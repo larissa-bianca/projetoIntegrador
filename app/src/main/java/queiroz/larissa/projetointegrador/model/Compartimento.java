@@ -46,7 +46,8 @@ public class Compartimento {
    public long getFreqInMillis(){
       double freqMilli;
 
-      freqMilli = this.getFreqInt() * (1000 * 60 * 60);
+      freqMilli = this.getFreqInt() * (100
+              * 60 * 60);
 
       return (long) freqMilli;
    }

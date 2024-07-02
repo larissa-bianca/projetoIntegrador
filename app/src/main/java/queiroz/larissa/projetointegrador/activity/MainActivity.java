@@ -313,10 +313,10 @@ public class MainActivity extends AppCompatActivity {
         calendar.set(Calendar.HOUR_OF_DAY, hora);
         calendar.set(Calendar.MINUTE, min);
 
-        Intent intent = new Intent(this, AlarmReceiver.class);
-        pendingIntent = PendingIntent.getBroadcast(this, 0, intent, PendingIntent.FLAG_UPDATE_CURRENT);
+        Intent intent = new Intent(MainActivity.this, AlarmReceiver.class);
+        pendingIntent = PendingIntent.getBroadcast(MainActivity.this, 0, intent, 0);
 
-        time =  (calendar.getTimeInMillis() - (calendar.getTimeInMillis() % 60000));
+        time =  calendar.getTimeInMillis();
         if (System.currentTimeMillis() > time){
 
             if (Calendar.AM_PM == 0)
