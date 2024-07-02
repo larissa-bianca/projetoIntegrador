@@ -28,7 +28,9 @@ public class AlarmReceiver extends BroadcastReceiver {
 
         Toast.makeText(context, "Alarm! Wake up! Wake up!", Toast.LENGTH_LONG).show();
 
-        Intent i = new Intent(context, NewItemActivityAlarm.class);
-        context.startActivity(i);
+        //Intent i = new Intent(context, NewItemActivityAlarm.class);
+        //startActivity(context, i, null);
+
+
     }
 }

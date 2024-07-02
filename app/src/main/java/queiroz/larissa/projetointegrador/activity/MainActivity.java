@@ -312,6 +312,8 @@ public class MainActivity extends AppCompatActivity {
 
         calendar.set(Calendar.HOUR_OF_DAY, hora);
         calendar.set(Calendar.MINUTE, min);
+        calendar.set(Calendar.SECOND, 0);
+        calendar.set(Calendar.MILLISECOND, 0);
 
         Intent intent = new Intent(MainActivity.this, AlarmReceiver.class);
         pendingIntent = PendingIntent.getBroadcast(MainActivity.this, 0, intent, 0);
