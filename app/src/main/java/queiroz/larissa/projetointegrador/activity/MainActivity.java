@@ -17,6 +17,7 @@ import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.os.Build;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -323,9 +324,19 @@ public class MainActivity extends AppCompatActivity {
                 time = time + (1000 * 60 * 60 * 24);
         }
 
-        alarmManager.setRepeating(AlarmManager.RTC_WAKEUP, time, c.getFreqInMillis(), pendingIntent);
-        Toast.makeText(MainActivity.this, String.valueOf(c.getFreqInMillis()), Toast.LENGTH_LONG).show();
+        //alarmManager.setRepeating(AlarmManager.RTC_WAKEUP, time, c.getFreqInMillis(), pendingIntent);
+        //Toast.makeText(MainActivity.this, String.valueOf(c.getFreqInMillis()), Toast.LENGTH_LONG).show();
+        // Adicione um log para verificar o tempo de repetição do alarme
+        Log.d("Alarme", "Time: " + time);
+        Log.d("Alarme", "FreqInMillis: " + c.getFreqInMillis());
 
+        // Verifique se os valores não são nulos
+        if (alarmManager != null && pendingIntent != null) {
+            alarmManager.setRepeating(AlarmManager.RTC_WAKEUP, time, c.getFreqInMillis(), pendingIntent);
+            Toast.makeText(MainActivity.this, String.valueOf(c.getFreqInMillis()), Toast.LENGTH_LONG).show();
+        } else {
+            Log.e("Alarme", "AlarmManager or PendingIntent is null");
+        }
     }
 
     void navegarEditarCaixa( int caixa) {

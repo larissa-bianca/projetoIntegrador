@@ -32,14 +32,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <receiver android:name=".activity.AlarmReceiver"
-            android:exported="true">
-            <intent-filter>
-                <action android:name="android.intent.action.BOOT_COMPLETED"/>
-                <action android:name="android.intent.action.USER_PRESENT"/>
-                <!-- Outros filtros de intent, se necessário -->
-            </intent-filter>
-        </receiver>
+        <receiver android:name=".activity.AlarmReceiver" />
     </application>
 
 </manifest>

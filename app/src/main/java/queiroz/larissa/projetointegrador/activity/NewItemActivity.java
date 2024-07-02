@@ -177,6 +177,7 @@ public class NewItemActivity extends AppCompatActivity {
                 });
 
 
+
                 builder.create();
                 AlertDialog alertDialog = builder.create();
                 alertDialog.show();

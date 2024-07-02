@@ -31,9 +31,9 @@ public class Compartimento {
       return qtdInt;
    }
 
-   public int getFreqInt(){
-      int freqInt;
-      freqInt = Integer.parseInt(this.freqInt);
+   public double getFreqInt(){
+      double freqInt;
+      freqInt = Double.valueOf(this.freqInt);
       return freqInt;
    }
 
@@ -44,11 +44,11 @@ public class Compartimento {
    }
 
    public long getFreqInMillis(){
-      long freqMilli;
+      double freqMilli;
 
       freqMilli = this.getFreqInt() * (1000 * 60 * 60);
 
-      return freqMilli;
+      return (long) freqMilli;
    }
    //public int getQtdInt(){}
 }
