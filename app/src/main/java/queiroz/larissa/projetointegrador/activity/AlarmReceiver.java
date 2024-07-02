@@ -15,8 +15,10 @@ import android.widget.Toast;
 import androidx.annotation.RequiresApi;
 
 public class AlarmReceiver extends BroadcastReceiver {
+
     @RequiresApi(api = Build.VERSION_CODES.Q)
     @Override
+
     // implement onReceive() method
     public void onReceive(Context context, Intent intent) {
 
@@ -26,7 +28,7 @@ public class AlarmReceiver extends BroadcastReceiver {
 
         Toast.makeText(context, "Alarm! Wake up! Wake up!", Toast.LENGTH_LONG).show();
 
-        Intent i = new Intent(AlarmReceiver.this, NewItemActivityAlarm.class);
-        startActivity(i.this);
+        Intent i = new Intent(context, NewItemActivityAlarm.class);
+
     }
 }

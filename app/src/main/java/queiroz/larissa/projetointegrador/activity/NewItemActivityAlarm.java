@@ -18,6 +18,7 @@ public class NewItemActivityAlarm extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        Intent i = getIntent();
         EdgeToEdge.enable(this);
         setContentView(R.layout.activity_new_item_alarm);
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
@@ -30,7 +31,7 @@ public class NewItemActivityAlarm extends AppCompatActivity {
         btnDesligarAlarme.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent i = new Intent(NewItemActivityAlarm.this,
+                Intent j = new Intent(NewItemActivityAlarm.this,
                         MainActivity.class);
             }
         });
