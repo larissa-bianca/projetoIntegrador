@@ -43,7 +43,7 @@ public class Compartimento {
        this.qtd = qtdStr;
    }
 
-   public long getFreqMilli(){
+   public long getFreqInMillis(){
       long freqMilli;
 
       freqMilli = this.getFreqInt() * (1000 * 60 * 60);

@@ -17,7 +17,6 @@ import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.os.Build;
 import android.os.Bundle;
-import android.provider.AlarmClock;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -310,8 +309,6 @@ public class MainActivity extends AppCompatActivity {
         alarmManager = (AlarmManager) getSystemService(ALARM_SERVICE);
         Calendar calendar = Calendar.getInstance();
 
-        Toast.makeText(MainActivity.this, "ALARME LIGADO", Toast.LENGTH_SHORT).show();
-
         calendar.set(Calendar.HOUR_OF_DAY, hora);
         calendar.set(Calendar.MINUTE, min);
 
@@ -326,7 +323,8 @@ public class MainActivity extends AppCompatActivity {
                 time = time + (1000 * 60 * 60 * 24);
         }
 
-        alarmManager.setRepeating(AlarmManager.RTC_WAKEUP, time, c.getFreqMilli(), pendingIntent);
+        alarmManager.setRepeating(AlarmManager.RTC_WAKEUP, time, c.getFreqInMillis(), pendingIntent);
+        Toast.makeText(MainActivity.this, String.valueOf(c.getFreqInMillis()), Toast.LENGTH_LONG).show();
 
     }
 
