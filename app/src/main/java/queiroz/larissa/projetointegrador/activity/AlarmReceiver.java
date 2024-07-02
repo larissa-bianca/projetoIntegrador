@@ -14,6 +14,7 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import androidx.annotation.RequiresApi;
+import androidx.lifecycle.LiveData;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.lifecycle.ViewModelStoreOwner;
 
@@ -26,14 +27,21 @@ public class AlarmReceiver extends BroadcastReceiver {
 
     @RequiresApi(api = Build.VERSION_CODES.Q)
     @Override
+
     MainActivityViewModel vm;
+    LiveData<Boolean> resLD;
     // implement onReceive() method
     public void onReceive(Context context, Intent intent) {
         String nomeRemedio;
         // we will use vibrator first
         Vibrator vibrator = (Vibrator) context.getSystemService(Context.VIBRATOR_SERVICE);
         vibrator.vibrate(4000);
-
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
+            vm.ligarLed();
+        }
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
+            vm.piscarBuzzer();
+        }
         Toast.makeText(context, "Hora de tomar o remédio!", Toast.LENGTH_LONG).show();
 
         //Intent i = new Intent(context, NewItemActivityAlarm.class);
