@@ -3,25 +3,19 @@ package queiroz.larissa.projetointegrador.model;
 import android.app.Application;
 
 import androidx.annotation.NonNull;
-import androidx.lifecycle.AndroidViewModel;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
-public class MainActivityViewModel extends AndroidViewModel {
+public class NewItemActivityAlarmViewModel {
 
-    public MainActivityViewModel(@NonNull Application application) {
+    public NewItemActivityAlarmViewModel(@NonNull Application application) {
         super(application);
     }
 
-
-    /**
-     * Método que cria e executa uma requisição ao servidor web para desligar o LED
-     * @return um LiveData que vai conter a resposta do servidor quando esta estiver disponível
-     */
-    public LiveData<Boolean> fecharCaixa(int caixa) {
+    public LiveData<Boolean> piscarBuzzer() {
 
         // Cria um container do tipo MutableLiveData (um LiveData que pode ter seu conteúdo alterado).
         MutableLiveData<Boolean> result = new MutableLiveData<>();
@@ -48,7 +42,7 @@ public class MainActivityViewModel extends AndroidViewModel {
                 // O método turnLedOff envia uma requisição ao ESP32 pedindo que ele desligue o LED. Ele
                 // retorna um booleano indicando true caso o ESP32 tenha realizado a ação e
                 // false em caso contrário
-                boolean b = repository.fecharCaixa(caixa);
+                boolean b = repository.piscarBuzzer();
 
                 // Aqui postamos o resultado da operação dentro do LiveData. Quando fazemos isso,
                 // quem estiver observando o LiveData será avisado de que o resultado está disponível.
@@ -59,7 +53,7 @@ public class MainActivityViewModel extends AndroidViewModel {
         return result;
     }
 
-    public LiveData<Boolean> abrirCaixa(int caixa) {
+    public LiveData<Boolean> ligarLed() {
 
         // Cria um container do tipo MutableLiveData (um LiveData que pode ter seu conteúdo alterado).
         MutableLiveData<Boolean> result = new MutableLiveData<>();
@@ -86,7 +80,7 @@ public class MainActivityViewModel extends AndroidViewModel {
                 // O método turnLedOff envia uma requisição ao ESP32 pedindo que ele desligue o LED. Ele
                 // retorna um booleano indicando true caso o ESP32 tenha realizado a ação e
                 // false em caso contrário
-                boolean b = repository.abrirCaixa(caixa);
+                boolean b = repository.ligarLed();
 
                 // Aqui postamos o resultado da operação dentro do LiveData. Quando fazemos isso,
                 // quem estiver observando o LiveData será avisado de que o resultado está disponível.
