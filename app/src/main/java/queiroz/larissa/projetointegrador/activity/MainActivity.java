@@ -132,7 +132,9 @@ public class MainActivity extends AppCompatActivity {
         btnAbreCaixa.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                operarCaixa(1, btnAbreCaixa);
+                if (caixas[0] != null) {
+                    operarCaixa(1, btnAbreCaixa);
+                }
             }
         });
 
@@ -140,7 +142,9 @@ public class MainActivity extends AppCompatActivity {
         btnAbreCaixa2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                operarCaixa(2, btnAbreCaixa2);
+                if (caixas[1] != null) {
+                    operarCaixa(2, btnAbreCaixa2);
+                }
             }
         });
 
@@ -148,7 +152,9 @@ public class MainActivity extends AppCompatActivity {
         btnAbreCaixa3.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                operarCaixa(3, btnAbreCaixa3);
+                if (caixas[2] != null) {
+                    operarCaixa(3, btnAbreCaixa3);
+                }
             }
         });
     }
@@ -246,6 +252,7 @@ public class MainActivity extends AppCompatActivity {
                         // Atualiza o texto do botão para "Fechar Caixa"
                         v.setText("Abrir Caixa");
                         caixas[caixa-1].diminuiQtd();
+                        tvQtd.setText(caixas[caixa-1].qtd);
                         try {
                             Config.salvarCompartimento(MainActivity.this, caixa, caixas[caixa-1]);
                         } catch (JSONException e) {
@@ -331,10 +338,6 @@ public class MainActivity extends AppCompatActivity {
 
         //alarmManager.setRepeating(AlarmManager.RTC_WAKEUP, time, c.getFreqInMillis(), pendingIntent);
         //Toast.makeText(MainActivity.this, String.valueOf(c.getFreqInMillis()), Toast.LENGTH_LONG).show();
-        // Adicione um log para verificar o tempo de repetição do alarme
-        Log.d("Alarme", "Time: " + time);
-        Log.d("Alarme", "FreqInMillis: " + c.getFreqInMillis());
-
         // Verifique se os valores não são nulos
         if (alarmManager != null && pendingIntent != null) {
             alarmManager.setRepeating(AlarmManager.RTC_WAKEUP, time, c.getFreqInMillis(), pendingIntent);
