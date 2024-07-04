@@ -114,7 +114,7 @@ public class Repository {
         return false;
     }
 
-    public boolean piscarBuzzer() {
+    public boolean acionarBuzzer() {
 
         // Cria uma requisição HTTP a ser enviada ao ESP32
         HttpRequest httpRequest = new HttpRequest("http://" + Config.getESP32Address(context) + "/buzzerH", "GET", "UTF-8");

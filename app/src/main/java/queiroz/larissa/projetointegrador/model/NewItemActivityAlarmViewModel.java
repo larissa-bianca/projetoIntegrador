@@ -17,7 +17,7 @@ public class NewItemActivityAlarmViewModel extends AndroidViewModel {
     }
 
 
-    public LiveData<Boolean> piscarBuzzer() {
+    public LiveData<Boolean> acionarBuzzer() {
 
         // Cria um container do tipo MutableLiveData (um LiveData que pode ter seu conteúdo alterado).
         MutableLiveData<Boolean> result = new MutableLiveData<>();
@@ -44,7 +44,7 @@ public class NewItemActivityAlarmViewModel extends AndroidViewModel {
                 // O método turnLedOff envia uma requisição ao ESP32 pedindo que ele desligue o LED. Ele
                 // retorna um booleano indicando true caso o ESP32 tenha realizado a ação e
                 // false em caso contrário
-                boolean b = repository.piscarBuzzer();
+                boolean b = repository.acionarBuzzer();
 
                 // Aqui postamos o resultado da operação dentro do LiveData. Quando fazemos isso,
                 // quem estiver observando o LiveData será avisado de que o resultado está disponível.

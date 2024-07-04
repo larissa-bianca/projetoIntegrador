@@ -302,13 +302,13 @@ public class MainActivity extends AppCompatActivity {
                 }
                 preencherCaixaUi(caixa, c);
 
-                alarme(c);
+                configurarAlarme(c);
 
             }
         }
     }
 
-    protected void alarme(Compartimento c){
+    protected void configurarAlarme(Compartimento c){
         int hora = c.getHoras();
         int min =  c.getMinutos();
 
@@ -316,7 +316,7 @@ public class MainActivity extends AppCompatActivity {
 
         alarmManager = (AlarmManager) getSystemService(ALARM_SERVICE);
         Calendar calendar = Calendar.getInstance();
-
+        calendar.setTimeInMillis(System.currentTimeMillis());
         calendar.set(Calendar.HOUR_OF_DAY, hora);
         calendar.set(Calendar.MINUTE, min);
         calendar.set(Calendar.SECOND, 0);
@@ -338,10 +338,10 @@ public class MainActivity extends AppCompatActivity {
 
         //alarmManager.setRepeating(AlarmManager.RTC_WAKEUP, time, c.getFreqInMillis(), pendingIntent);
         //Toast.makeText(MainActivity.this, String.valueOf(c.getFreqInMillis()), Toast.LENGTH_LONG).show();
-        // Verifique se os valores não são nulos
+        // Verifica se os valores não são nulos
         if (alarmManager != null && pendingIntent != null) {
             alarmManager.setRepeating(AlarmManager.RTC_WAKEUP, time, c.getFreqInMillis(), pendingIntent);
-            Toast.makeText(MainActivity.this, String.valueOf(c.getFreqInMillis()), Toast.LENGTH_LONG).show();
+            Toast.makeText(MainActivity.this, "Alarme adicionado!", Toast.LENGTH_LONG).show();
         } else {
             Log.e("Alarme", "AlarmManager or PendingIntent is null");
         }
